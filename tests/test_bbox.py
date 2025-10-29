@@ -64,6 +64,13 @@ class TestBbox(unittest.TestCase):
         self.assertTrue(self.bbox == Bbox(10, 20, 30, 40))
         self.assertFalse(self.bbox == Bbox(20, 30, 40, 50))
 
+        # Test NotImplemented case
+        class OtherClass:
+            pass
+
+        other_instance = OtherClass()
+        self.assertEqual(self.bbox.__eq__(other_instance), NotImplemented)
+
     def test_repr(self):
         """Test Bbox repr."""
         self.assertEqual(repr(self.bbox), "Bbox(left=10, top=20, right=30, bottom=40)")
@@ -181,7 +188,7 @@ class TestBbox(unittest.TestCase):
 
     def test_to_norm_tlbr(self):
         """Test the to_norm_tlbr method."""
-        self.assertListEqual(self.bbox.to_norm_tlbr(100, 100), [0.1, 0.2, 0.3, 0.4])
+        self.assertListEqual(self.bbox.to_norm_tlbr(101, 101), [0.1, 0.2, 0.3, 0.4])
 
     def test_to_tlwh(self):
         """Test the to_tlwh method."""
@@ -192,7 +199,7 @@ class TestBbox(unittest.TestCase):
 
     def test_to_norm_tlwh(self):
         """Test the to_norm_tlwh method."""
-        self.assertListEqual(self.bbox.to_norm_tlwh(100, 100), [0.1, 0.2, 0.3, 0.4])
+        self.assertListEqual(self.bbox.to_norm_tlwh(101, 101), [0.1, 0.2, 0.3, 0.4])
 
     def test_to_cwh(self):
         """Test the to_cwh method."""
@@ -203,7 +210,7 @@ class TestBbox(unittest.TestCase):
 
     def test_to_norm_cwh(self):
         """Test the to_norm_cwh method."""
-        self.assertListEqual(self.bbox.to_norm_cwh(100, 100), [0.2, 0.3, 0.2, 0.2])
+        self.assertListEqual(self.bbox.to_norm_cwh(101, 101), [0.2, 0.3, 0.2, 0.2])
 
     def test_to_polygon(self):
         """Test the to_polygon method."""
@@ -314,7 +321,7 @@ class TestBbox(unittest.TestCase):
         self.assertEqual(self.bbox.clip_to_img(100, 100), self.bbox)
 
         # Test clipping
-        self.assertEqual(self.bbox.clip_to_img(15, 25), Bbox(10, 20, 15, 25))
+        self.assertEqual(self.bbox.clip_to_img(16, 26), Bbox(10, 20, 15, 25))
 
     def test_overlaps(self):
         """Test the overlaps method."""

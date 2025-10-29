@@ -17,5 +17,5 @@ from importlib.metadata import version as _version
 from .bbox import Bbox
 from .utils import nms
 
-__version__ = _version("bbox")
+__version__ = _version("easy-bbox")
 __all__ = ["Bbox", "nms"]

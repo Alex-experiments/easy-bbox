@@ -16,14 +16,18 @@ class Bbox:
     A class to represent a Bbox.
 
     The bbox is stored in Pascal_VOC format:
-            top-left, bottom-right with a top-left origin (PIL coord system).
-            (meaning that top < bottom)
+    top-left, bottom-right with a top-left origin (PIL coord system).
+    (meaning that top < bottom)
 
-        Attributes:
-            left (float): The left coordinate of the bounding box.
-            top (float): The top coordinate of the bounding box.
-            right (float): The right coordinate of the bounding box.
-            bottom (float): The bottom coordinate of the bounding box.
+    The bottom and right edges are considered included in the Bbox. Therefore,
+    for an image of width `W` and height `H`, the minimal bounding box covering the whole image
+    is `Bbox(left=0, top=0, right=W-1, bottom=H-1)`.
+
+    Attributes:
+        left (float): The left coordinate of the bounding box.
+        top (float): The top coordinate of the bounding box.
+        right (float): The right coordinate of the bounding box.
+        bottom (float): The bottom coordinate of the bounding box.
     """
 
     def __init__(self, left: float, top: float, right: float, bottom: float):
@@ -175,10 +179,10 @@ class Bbox:
                 All the returned values are **NORMALIZED** based on the image dimensions.
         """
         return [
-            self.left / img_w,
-            self.top / img_h,
-            self.right / img_w,
-            self.bottom / img_h,
+            self.left / (img_w - 1),
+            self.top / (img_h - 1),
+            self.right / (img_w - 1),
+            self.bottom / (img_h - 1),
         ]
 
     def to_tlwh(self) -> List[float]:
@@ -207,10 +211,10 @@ class Bbox:
                 All the returned values are **NORMALIZED** based on the image dimensions.
         """
         return [
-            self.left / img_w,
-            self.top / img_h,
-            self.right / img_w,
-            self.bottom / img_h,
+            self.left / (img_w - 1),
+            self.top / (img_h - 1),
+            self.right / (img_w - 1),
+            self.bottom / (img_h - 1),
         ]
 
     def to_cwh(self) -> List[float]:
@@ -236,7 +240,12 @@ class Bbox:
             height].
         """
         cx, cy = self.center
-        return [cx / img_w, cy / img_h, self.width / img_w, self.height / img_h]
+        return [
+            cx / (img_w - 1),
+            cy / (img_h - 1),
+            self.width / (img_w - 1),
+            self.height / (img_h - 1),
+        ]
 
     def to_polygon(self) -> List[Tuple[float, float]]:
         """
@@ -428,6 +437,10 @@ class Bbox:
         """
         Returns a clipped Bbox to the image dimensions.
 
+        Remember that the bottom and right edges are inclusive, so
+        `Bbox(left=-10, top=-20, right=100, bottom=120).clipt_to_img(img_w=32, img_h=64)`
+        returns `Bbox(left=0, top=0, right=31, bottom=63)`
+
         Args:
             img_w (int): The image width in pixels.
             img_h (int): The image height in pixels.
@@ -438,8 +451,8 @@ class Bbox:
         return Bbox(
             left=max(0, self.left),
             top=max(0, self.top),
-            right=min(img_w, self.right),
-            bottom=min(img_h, self.bottom),
+            right=min(img_w - 1, self.right),
+            bottom=min(img_h - 1, self.bottom),
         )
 
     # endregion
