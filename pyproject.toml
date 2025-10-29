@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bbox"
+version = "1.0.0"
+description = "A lightweight bounding box manipulation library with Pascal VOC, COCO, and YOLO format conversions."
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = []
+
+[project.urls]
+Homepage = "TODO"
+Repository = "TODO"
+Issues = "TODO"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["easy_bbox*"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "coverage"]
