@@ -7,7 +7,7 @@ class TestBbox(unittest.TestCase):
     """Unit tests for the Bbox class."""
 
     def setUp(self):
-        self.bbox = Bbox(10, 20, 30, 40)
+        self.bbox = Bbox(left=10, top=20, right=30, bottom=40)
 
     def test_initialization(self):
         """Test Bbox initialization with left, top, right, and bottom coordinates."""
@@ -18,20 +18,10 @@ class TestBbox(unittest.TestCase):
 
         # Test invalid bbox initialization
         with self.assertRaises(ValueError):
-            Bbox(10, 0, 0, 10)
+            Bbox(left=10, top=0, right=0, bottom=10)
 
         with self.assertRaises(ValueError):
-            Bbox(0, 10, 10, 0)
-
-    def test_copy(self):
-        """Test Bbox copy method."""
-        copied_bbox = self.bbox.copy()
-
-        # Check that the copied instance is not the same object as the original
-        self.assertIsNot(self.bbox, copied_bbox)
-
-        # Check that the copied instance is equal to the original
-        self.assertEqual(self.bbox, copied_bbox)
+            Bbox(left=0, top=10, right=10, bottom=0)
 
     # region Properties
     def test_width(self):
@@ -53,31 +43,12 @@ class TestBbox(unittest.TestCase):
     def test_aspect_ratio(self):
         """Test aspect ratio property."""
         self.assertEqual(self.bbox.aspect_ratio, 1)
-        self.assertEqual(Bbox(-5, 0, 5, 5).aspect_ratio, 2)
-        self.assertEqual(Bbox(0, -5, 5, 5).aspect_ratio, 0.5)
+        self.assertEqual(Bbox(left=-5, top=0, right=5, bottom=5).aspect_ratio, 2)
+        self.assertEqual(Bbox(left=0, top=-5, right=5, bottom=5).aspect_ratio, 0.5)
 
     # end region
 
     # region Dunder methods
-    def test_eq(self):
-        """Test Bbox equality."""
-        self.assertTrue(self.bbox == Bbox(10, 20, 30, 40))
-        self.assertFalse(self.bbox == Bbox(20, 30, 40, 50))
-
-        # Test NotImplemented case
-        class OtherClass:
-            pass
-
-        other_instance = OtherClass()
-        self.assertEqual(self.bbox.__eq__(other_instance), NotImplemented)
-
-    def test_repr(self):
-        """Test Bbox repr."""
-        self.assertEqual(repr(self.bbox), "Bbox(left=10, top=20, right=30, bottom=40)")
-
-    def test_str(self):
-        """Test Bbox string representation."""
-        self.assertEqual(str(self.bbox), "Bbox(left=10, top=20, right=30, bottom=40)")
 
     def test_or(self):
         """Test Bbox union with or."""
@@ -188,7 +159,7 @@ class TestBbox(unittest.TestCase):
 
     def test_to_norm_tlbr(self):
         """Test the to_norm_tlbr method."""
-        self.assertListEqual(self.bbox.to_norm_tlbr(101, 101), [0.1, 0.2, 0.3, 0.4])
+        self.assertListEqual(self.bbox.to_norm_tlbr(100, 100), [0.1, 0.2, 0.3, 0.4])
 
     def test_to_tlwh(self):
         """Test the to_tlwh method."""
@@ -199,7 +170,7 @@ class TestBbox(unittest.TestCase):
 
     def test_to_norm_tlwh(self):
         """Test the to_norm_tlwh method."""
-        self.assertListEqual(self.bbox.to_norm_tlwh(101, 101), [0.1, 0.2, 0.3, 0.4])
+        self.assertListEqual(self.bbox.to_norm_tlwh(100, 100), [0.1, 0.2, 0.3, 0.4])
 
     def test_to_cwh(self):
         """Test the to_cwh method."""
@@ -210,7 +181,7 @@ class TestBbox(unittest.TestCase):
 
     def test_to_norm_cwh(self):
         """Test the to_norm_cwh method."""
-        self.assertListEqual(self.bbox.to_norm_cwh(101, 101), [0.2, 0.3, 0.2, 0.2])
+        self.assertListEqual(self.bbox.to_norm_cwh(100, 100), [0.2, 0.3, 0.2, 0.2])
 
     def test_to_polygon(self):
         """Test the to_polygon method."""
@@ -243,21 +214,21 @@ class TestBbox(unittest.TestCase):
         self.assertEqual(
             shifted_box,
             Bbox(
-                self.bbox.left + 5,
-                self.bbox.top + 10,
-                self.bbox.right + 5,
-                self.bbox.bottom + 10,
+                left=self.bbox.left + 5,
+                top=self.bbox.top + 10,
+                right=self.bbox.right + 5,
+                bottom=self.bbox.bottom + 10,
             ),
         )
 
     def test_scale(self):
         """Test the scale method."""
-        bbox = Bbox(100, 120, 200, 140)
-        self.assertEqual(bbox.scale(2), Bbox(50, 110, 250, 150))
+        bbox = Bbox(left=100, top=120, right=200, bottom=140)
+        self.assertEqual(bbox.scale(2), Bbox(left=50, top=110, right=250, bottom=150))
 
         # Test collapse at center
         cx, cy = bbox.center
-        self.assertEqual(bbox.scale(0), Bbox(cx, cy, cx, cy))
+        self.assertEqual(bbox.scale(0), Bbox(left=cx, top=cy, right=cx, bottom=cy))
 
         # Test error with negative value
         with self.assertRaises(ValueError):
@@ -268,43 +239,57 @@ class TestBbox(unittest.TestCase):
         self.assertEqual(
             self.bbox.expand_uniform(5),
             Bbox(
-                self.bbox.left - 5,
-                self.bbox.top - 5,
-                self.bbox.right + 5,
-                self.bbox.bottom + 5,
+                left=self.bbox.left - 5,
+                top=self.bbox.top - 5,
+                right=self.bbox.right + 5,
+                bottom=self.bbox.bottom + 5,
             ),
         )
 
     def test_expand(self):
         """Test the expand method."""
-        self.assertEqual(self.bbox.expand(5, 10, 15, 20), Bbox(5, 10, 45, 60))
+        self.assertEqual(
+            self.bbox.expand(5, 10, 15, 20), Bbox(left=5, top=10, right=45, bottom=60)
+        )
 
     def test_pad_to_square(self):
         """Test the pad_to_square method."""
-        bbox = Bbox(0, 10, 100, 30)
-        self.assertEqual(bbox.pad_to_square(), Bbox(0, -30, 100, 70))
+        bbox = Bbox(left=0, top=10, right=100, bottom=30)
+        self.assertEqual(
+            bbox.pad_to_square(), Bbox(left=0, top=-30, right=100, bottom=70)
+        )
 
-        bbox = Bbox(-10, 0, 10, 50)
-        self.assertEqual(bbox.pad_to_square(), Bbox(-25, 0, 25, 50))
+        bbox = Bbox(left=-10, top=0, right=10, bottom=50)
+        self.assertEqual(
+            bbox.pad_to_square(), Bbox(left=-25, top=0, right=25, bottom=50)
+        )
 
         # Assert that pad to square returns a copy when the bbox is already square
-        bbox = Bbox(0, 0, 10, 10)
+        bbox = Bbox(left=0, top=0, right=10, bottom=10)
         padded = bbox.pad_to_square()
         self.assertEqual(bbox, padded)
         self.assertIsNot(bbox, padded)
 
     def test_pad_to_aspect_ratio(self):
         """Test the pad_to_aspect_ratio method."""
-        bbox = Bbox(0, 10, 100, 30)
-        self.assertEqual(bbox.pad_to_aspect_ratio(0.5), Bbox(0, -80, 100, 120))
-        self.assertEqual(bbox.pad_to_aspect_ratio(2), Bbox(0, -5, 100, 45))
+        bbox = Bbox(left=0, top=10, right=100, bottom=30)
+        self.assertEqual(
+            bbox.pad_to_aspect_ratio(0.5), Bbox(left=0, top=-80, right=100, bottom=120)
+        )
+        self.assertEqual(
+            bbox.pad_to_aspect_ratio(2), Bbox(left=0, top=-5, right=100, bottom=45)
+        )
 
-        bbox = Bbox(10, 0, 30, 100)
-        self.assertEqual(bbox.pad_to_aspect_ratio(0.5), Bbox(-5, 0, 45, 100))
-        self.assertEqual(bbox.pad_to_aspect_ratio(2), Bbox(-80, 0, 120, 100))
+        bbox = Bbox(left=10, top=0, right=30, bottom=100)
+        self.assertEqual(
+            bbox.pad_to_aspect_ratio(0.5), Bbox(left=-5, top=0, right=45, bottom=100)
+        )
+        self.assertEqual(
+            bbox.pad_to_aspect_ratio(2), Bbox(left=-80, top=0, right=120, bottom=100)
+        )
 
         # Assert that pad to square returns a copy when the bbox is already at the target ratio
-        bbox = Bbox(0, 0, 20, 10)
+        bbox = Bbox(left=0, top=0, right=20, bottom=10)
         padded = bbox.pad_to_aspect_ratio(2)
         self.assertEqual(bbox, padded)
         self.assertIsNot(bbox, padded)
@@ -321,37 +306,47 @@ class TestBbox(unittest.TestCase):
         self.assertEqual(self.bbox.clip_to_img(100, 100), self.bbox)
 
         # Test clipping
-        self.assertEqual(self.bbox.clip_to_img(16, 26), Bbox(10, 20, 15, 25))
+        self.assertEqual(
+            self.bbox.clip_to_img(15, 25), Bbox(left=10, top=20, right=15, bottom=25)
+        )
 
     def test_overlaps(self):
         """Test the overlaps method."""
         # Test with overlapping bboxes
-        bbox1 = Bbox(10, 10, 30, 30)
-        bbox2 = Bbox(20, 20, 40, 40)
+        bbox1 = Bbox(left=10, top=10, right=30, bottom=30)
+        bbox2 = Bbox(left=20, top=20, right=40, bottom=40)
         self.assertTrue(self.bbox.overlaps(bbox1))
         self.assertTrue(self.bbox.overlaps(bbox2))
 
         # Test with non-overlapping bboxes
-        bbox3 = Bbox(40, 40, 60, 60)
+        bbox3 = Bbox(left=40, top=40, right=60, bottom=60)
         self.assertFalse(bbox1.overlaps(bbox3), bbox3)
 
         # Test with identical bboxes
         self.assertTrue(self.bbox.overlaps(self.bbox))
 
         # Test with bbox inside another bbox
-        bbox4 = Bbox(15, 15, 25, 25)
+        bbox4 = Bbox(left=15, top=15, right=25, bottom=25)
         self.assertEqual(bbox1.union(bbox4), bbox1)
 
         # Check that two bboxes that share an edge are not overlapping
-        self.assertFalse(Bbox(0, 10, 10, 20).overlaps(Bbox(10, 0, 30, 40)))
+        self.assertFalse(
+            Bbox(left=0, top=10, right=10, bottom=20).overlaps(
+                Bbox(left=10, top=0, right=30, bottom=40)
+            )
+        )
 
         # Check that two bboxes that share a single point are not overlapping
-        self.assertFalse(Bbox(0, 10, 10, 20).overlaps(Bbox(10, 20, 30, 40)))
+        self.assertFalse(
+            Bbox(left=0, top=10, right=10, bottom=20).overlaps(
+                Bbox(left=10, top=20, right=30, bottom=40)
+            )
+        )
 
         # Test with one bbox with zero width or height
-        bbox12 = Bbox(20, 15, 20, 30)
-        bbox13 = Bbox(15, 20, 30, 20)
-        bbox14 = Bbox(15, 15, 15, 15)
+        bbox12 = Bbox(left=20, top=15, right=20, bottom=30)
+        bbox13 = Bbox(left=15, top=20, right=30, bottom=20)
+        bbox14 = Bbox(left=15, top=15, right=15, bottom=15)
         self.assertFalse(bbox1.overlaps(bbox12))
         self.assertFalse(bbox1.overlaps(bbox13))
         self.assertFalse(bbox1.overlaps(bbox14))
@@ -368,124 +363,141 @@ class TestBbox(unittest.TestCase):
     def test_union(self):
         """Test Bbox union."""
         # Test with overlapping bboxes
-        bbox1 = Bbox(10, 10, 30, 30)
-        bbox2 = Bbox(20, 20, 40, 40)
-        self.assertEqual(bbox1.union(bbox2), Bbox(10, 10, 40, 40))
+        bbox1 = Bbox(left=10, top=10, right=30, bottom=30)
+        bbox2 = Bbox(left=20, top=20, right=40, bottom=40)
+        self.assertEqual(bbox1.union(bbox2), Bbox(left=10, top=10, right=40, bottom=40))
 
         # Test with non-overlapping bboxes
-        bbox3 = Bbox(40, 40, 60, 60)
-        self.assertEqual(bbox1.union(bbox3), Bbox(10, 10, 60, 60))
+        bbox3 = Bbox(left=40, top=40, right=60, bottom=60)
+        self.assertEqual(bbox1.union(bbox3), Bbox(left=10, top=10, right=60, bottom=60))
 
         # Test with identical bboxes
         self.assertEqual(bbox1.union(bbox1), bbox1)
 
         # Test with bbox inside another bbox
-        bbox4 = Bbox(15, 15, 25, 25)
+        bbox4 = Bbox(left=15, top=15, right=25, bottom=25)
         self.assertEqual(bbox1.union(bbox4), bbox1)
 
         # Test with bbox containing another bbox
-        bbox5 = Bbox(5, 5, 35, 35)
+        bbox5 = Bbox(left=5, top=5, right=35, bottom=35)
         self.assertEqual(bbox5.union(bbox1), bbox5)
 
         # Test with bboxes touching each other
-        bbox6 = Bbox(30, 10, 50, 30)
-        self.assertEqual(bbox1.union(bbox6), Bbox(10, 10, 50, 30))
+        bbox6 = Bbox(left=30, top=10, right=50, bottom=30)
+        self.assertEqual(bbox1.union(bbox6), Bbox(left=10, top=10, right=50, bottom=30))
 
-        bbox7 = Bbox(10, 30, 30, 50)
-        self.assertEqual(bbox1.union(bbox7), Bbox(10, 10, 30, 50))
+        bbox7 = Bbox(left=10, top=30, right=30, bottom=50)
+        self.assertEqual(bbox1.union(bbox7), Bbox(left=10, top=10, right=30, bottom=50))
 
         # Test with bboxes not touching each other
-        bbox8 = Bbox(35, 10, 55, 30)
-        self.assertEqual(bbox1.union(bbox8), Bbox(10, 10, 55, 30))
+        bbox8 = Bbox(left=35, top=10, right=55, bottom=30)
+        self.assertEqual(bbox1.union(bbox8), Bbox(left=10, top=10, right=55, bottom=30))
 
-        bbox9 = Bbox(10, 35, 30, 55)
-        self.assertEqual(bbox1.union(bbox9), Bbox(10, 10, 30, 55))
+        bbox9 = Bbox(left=10, top=35, right=30, bottom=55)
+        self.assertEqual(bbox1.union(bbox9), Bbox(left=10, top=10, right=30, bottom=55))
 
         # Test with bboxes with negative coordinates
-        bbox10 = Bbox(-10, -10, 10, 10)
-        bbox11 = Bbox(-5, -5, 5, 5)
+        bbox10 = Bbox(left=-10, top=-10, right=10, bottom=10)
+        bbox11 = Bbox(left=-5, top=-5, right=5, bottom=5)
         self.assertEqual(bbox10.union(bbox11), bbox10)
 
         # Test with bboxes with zero width or height
-        bbox12 = Bbox(10, 10, 10, 30)
-        bbox13 = Bbox(10, 20, 30, 20)
-        self.assertEqual(bbox12.union(bbox13), Bbox(10, 10, 30, 30))
+        bbox12 = Bbox(left=10, top=10, right=10, bottom=30)
+        bbox13 = Bbox(left=10, top=20, right=30, bottom=20)
+        self.assertEqual(
+            bbox12.union(bbox13), Bbox(left=10, top=10, right=30, bottom=30)
+        )
 
     def test_intersection(self):
         """Test Bbox intersection."""
         # Test with overlapping bboxes
-        bbox1 = Bbox(10, 10, 30, 30)
-        bbox2 = Bbox(20, 20, 40, 40)
-        self.assertEqual(bbox1.intersection(bbox2), Bbox(20, 20, 30, 30))
+        bbox1 = Bbox(left=10, top=10, right=30, bottom=30)
+        bbox2 = Bbox(left=20, top=20, right=40, bottom=40)
+        self.assertEqual(
+            bbox1.intersection(bbox2), Bbox(left=20, top=20, right=30, bottom=30)
+        )
 
         # Test with non-overlapping bboxes
-        bbox3 = Bbox(40, 40, 60, 60)
+        bbox3 = Bbox(left=40, top=40, right=60, bottom=60)
         self.assertIsNone(bbox1.intersection(bbox3))
 
         # Test with identical bboxes
         self.assertEqual(bbox1.intersection(bbox1), bbox1)
 
         # Test with bbox inside another bbox
-        bbox4 = Bbox(15, 15, 25, 25)
+        bbox4 = Bbox(left=15, top=15, right=25, bottom=25)
         self.assertEqual(bbox1.intersection(bbox4), bbox4)
 
         # Test with bbox containing another bbox
-        bbox5 = Bbox(5, 5, 35, 35)
+        bbox5 = Bbox(left=5, top=5, right=35, bottom=35)
         self.assertEqual(bbox5.intersection(bbox1), bbox1)
 
         # Test with bboxes overlapping
-        bbox6 = Bbox(30, 10, 50, 30)
-        self.assertEqual(bbox1.intersection(bbox6), Bbox(30, 10, 30, 30))
+        bbox6 = Bbox(left=30, top=10, right=50, bottom=30)
+        self.assertEqual(
+            bbox1.intersection(bbox6), Bbox(left=30, top=10, right=30, bottom=30)
+        )
 
-        bbox7 = Bbox(10, 30, 30, 50)
-        self.assertEqual(bbox1.intersection(bbox7), Bbox(10, 30, 30, 30))
+        bbox7 = Bbox(left=10, top=30, right=30, bottom=50)
+        self.assertEqual(
+            bbox1.intersection(bbox7), Bbox(left=10, top=30, right=30, bottom=30)
+        )
 
         # Test with bboxes not touching each other
-        bbox8 = Bbox(35, 10, 55, 30)
+        bbox8 = Bbox(left=35, top=10, right=55, bottom=30)
         self.assertIsNone(bbox1.intersection(bbox8))
 
-        bbox9 = Bbox(10, 35, 30, 55)
+        bbox9 = Bbox(left=10, top=35, right=30, bottom=55)
         self.assertIsNone(bbox1.intersection(bbox9))
 
         # Test with bboxes with negative coordinates
-        bbox10 = Bbox(-10, -10, 10, 10)
-        bbox11 = Bbox(-5, -5, 5, 5)
+        bbox10 = Bbox(left=-10, top=-10, right=10, bottom=10)
+        bbox11 = Bbox(left=-5, top=-5, right=5, bottom=5)
         self.assertEqual(bbox10.intersection(bbox11), bbox11)
 
         # Test with bboxes with zero width or height
-        bbox12 = Bbox(10, 10, 10, 30)
-        bbox13 = Bbox(10, 20, 30, 20)
-        self.assertEqual(bbox12.intersection(bbox13), Bbox(10, 20, 10, 20))
+        bbox12 = Bbox(left=10, top=10, right=10, bottom=30)
+        bbox13 = Bbox(left=10, top=20, right=30, bottom=20)
+        self.assertEqual(
+            bbox12.intersection(bbox13), Bbox(left=10, top=20, right=10, bottom=20)
+        )
 
         # Test with bboxes sharing an edge
-        bbox14 = Bbox(30, 10, 50, 20)
-        self.assertEqual(bbox1.intersection(bbox14), Bbox(30, 10, 30, 20))
+        bbox14 = Bbox(left=30, top=10, right=50, bottom=20)
+        self.assertEqual(
+            bbox1.intersection(bbox14), Bbox(left=30, top=10, right=30, bottom=20)
+        )
 
     def test_iou(self):
         # Test that the IoU is 0 when there is no intersection.
-        first = Bbox(0, 0, 10, 10)
-        second = Bbox(20, 20, 30, 30)
+        first = Bbox(left=0, top=0, right=10, bottom=10)
+        second = Bbox(left=20, top=20, right=30, bottom=30)
         self.assertEqual(first.iou(second), 0.0)
 
         # Test that the IoU is 1 when provided with twice the same bbox.
         self.assertEqual(self.bbox.iou(self.bbox), 1.0)
 
         # Unless given two bboxes with no area (to avoid ZeroDivError)
-        self.assertEqual(Bbox(0, 0, 0, 0).iou(Bbox(5, 5, 5, 5)), 0.0)
+        self.assertEqual(
+            Bbox(left=0, top=0, right=0, bottom=0).iou(
+                Bbox(left=5, top=5, right=5, bottom=5)
+            ),
+            0.0,
+        )
 
         # Test that the IoU is calculated correctly for a partial intersection.
-        first = Bbox(0, 0, 10, 10)
-        second = Bbox(5, 5, 15, 15)
+        first = Bbox(left=0, top=0, right=10, bottom=10)
+        second = Bbox(left=5, top=5, right=15, bottom=15)
         self.assertEqual(first.iou(second), 25 / 175)
 
         # Test that the IoU is calculated correctly when the first bbox contains the second.
-        first = Bbox(0, 0, 20, 20)
-        second = Bbox(5, 5, 15, 15)
+        first = Bbox(left=0, top=0, right=20, bottom=20)
+        second = Bbox(left=5, top=5, right=15, bottom=15)
         self.assertEqual(first.iou(second), second.area / first.area)
 
         # Test that the IoU is calculated correctly when the second bbox contains the first.
-        first = Bbox(5, 5, 15, 15)
-        second = Bbox(0, 0, 20, 20)
+        first = Bbox(left=5, top=5, right=15, bottom=15)
+        second = Bbox(left=0, top=0, right=20, bottom=20)
         self.assertEqual(first.iou(second), first.area / second.area)
 
     def test_distance_to_point(self):

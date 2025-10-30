@@ -1,9 +1,15 @@
 # Easy Bbox
 
-Easy Bbox is a Python package designed to simplify bounding box operations. It provides a comprehensive set of tools for manipulating bounding boxes in various coordinate formats, including Pascal VOC, COCO, and YOLO. The package supports transformations, geometric operations, and conversions, making it a versatile tool for computer vision tasks.
+<p align="center">
+    <a href="https://github.com/Alex-experiments/easy-bbox/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
+    <a href="https://github.com/Alex-experiments/easy-bbox/actions"><img alt="Coverage" src="https://Alex-experiments.github.io/easy-bbox/badges/coverage.svg"></a>
+</p>
+
+
+Easy Bbox is a Python package designed to simplify bounding box operations. It provides a comprehensive set of tools for manipulating bounding boxes in various coordinate formats, including Pascal VOC, COCO, YOLO and Albumentations. The package supports transformations, geometric operations, and conversions, making it a versatile tool for computer vision tasks.
 
 ## Features
-- **Multiple Coordinate Formats**: Supports Pascal VOC, COCO, and YOLO formats.
+- **Multiple Coordinate Formats**: Supports Pascal VOC, COCO, YOLO and Albumentation formats.
 - **Transformations**: Shift, scale, expand, and pad bounding boxes.
 - **Geometric Operations**: Calculate intersections, unions, and IoU (Intersection over Union).
 - **Conversions**: Convert between different coordinate formats.

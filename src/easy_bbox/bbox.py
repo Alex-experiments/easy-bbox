@@ -8,20 +8,21 @@ transformations, geometric operations, and conversions.
 
 from __future__ import annotations
 
-from typing import Any, List, Optional, Sequence, Tuple
+from typing import List, Optional, Self, Sequence, Tuple
+
+from pydantic import BaseModel, model_validator, __version__ as pydantic_version
 
 
-class Bbox:
+class Bbox(BaseModel):
     """
-    A class to represent a Bbox.
+    A class to represent a Bbox (inherits from Pydantic BaseModel).
 
     The bbox is stored in Pascal_VOC format:
     top-left, bottom-right with a top-left origin (PIL coord system).
     (meaning that top < bottom)
 
-    The bottom and right edges are considered included in the Bbox. Therefore,
-    for an image of width `W` and height `H`, the minimal bounding box covering the whole image
-    is `Bbox(left=0, top=0, right=W-1, bottom=H-1)`.
+    The bottom and right edges are considered excluded from the Bbox for compatibility with array
+    slicing and PIL image cropping features (in case of Int Bboxes).
 
     Attributes:
         left (float): The left coordinate of the bounding box.
@@ -30,34 +31,27 @@ class Bbox:
         bottom (float): The bottom coordinate of the bounding box.
     """
 
-    def __init__(self, left: float, top: float, right: float, bottom: float):
-        """
-        Initializes a Bbox instance.
+    left: float
+    top: float
+    right: float
+    bottom: float
 
-        The bbox is stored in Pascal_VOC format:
-            top-left, bottom-right with a top-left origin (PIL coord system).
-            (meaning that top < bottom)
+    if pydantic_version >= "2.12.0":
 
-        Args:
-            left (float): The left coordinate of the bounding box.
-            top (float): The top coordinate of the bounding box.
-            right (float): The right coordinate of the bounding box.
-            bottom (float): The bottom coordinate of the bounding box.
+        @model_validator(mode="after")
+        def check_passwords_match(self) -> Self:
+            if self.left > self.right or self.top > self.bottom:
+                raise ValueError("The Bbow is not valid (negative width or height).")
+            return self
+    else:
+        # Ensure compatibility with previous pydantic versions
 
-        Raises:
-            ValueError: If the Bbox is not valid (ie `left > right` or `top > bottom`).
-        """
-        if left > right or top > bottom:
-            raise ValueError("The Bbow is not valid (negative width or height).")
-
-        self.left: float = left
-        self.top: float = top
-        self.right: float = right
-        self.bottom: float = bottom
-
-    def copy(self) -> Bbox:
-        """Returns a copy of the instance."""
-        return Bbox(left=self.left, top=self.top, right=self.right, bottom=self.bottom)
+        @model_validator(mode="after")  # type: ignore[arg-type]
+        @classmethod
+        def check_passwords_match(cls, model: "Bbox") -> "Bbox":
+            if model.left > model.right or model.top > model.bottom:
+                raise ValueError("The Bbow is not valid (negative width or height).")
+            return model
 
     # region From methods
     @classmethod
@@ -179,10 +173,10 @@ class Bbox:
                 All the returned values are **NORMALIZED** based on the image dimensions.
         """
         return [
-            self.left / (img_w - 1),
-            self.top / (img_h - 1),
-            self.right / (img_w - 1),
-            self.bottom / (img_h - 1),
+            self.left / img_w,
+            self.top / img_h,
+            self.right / img_w,
+            self.bottom / img_h,
         ]
 
     def to_tlwh(self) -> List[float]:
@@ -211,10 +205,10 @@ class Bbox:
                 All the returned values are **NORMALIZED** based on the image dimensions.
         """
         return [
-            self.left / (img_w - 1),
-            self.top / (img_h - 1),
-            self.right / (img_w - 1),
-            self.bottom / (img_h - 1),
+            self.left / img_w,
+            self.top / img_h,
+            self.right / img_w,
+            self.bottom / img_h,
         ]
 
     def to_cwh(self) -> List[float]:
@@ -240,12 +234,7 @@ class Bbox:
             height].
         """
         cx, cy = self.center
-        return [
-            cx / (img_w - 1),
-            cy / (img_h - 1),
-            self.width / (img_w - 1),
-            self.height / (img_h - 1),
-        ]
+        return [cx / img_w, cy / img_h, self.width / img_w, self.height / img_h]
 
     def to_polygon(self) -> List[Tuple[float, float]]:
         """
@@ -388,7 +377,7 @@ class Bbox:
                 bottom=self.bottom,
             )
 
-        return self.copy()
+        return self.model_copy()
 
     def pad_to_aspect_ratio(self, target_ratio: float) -> Bbox:
         """
@@ -431,7 +420,7 @@ class Bbox:
                 bottom=self.bottom,
             )
 
-        return self.copy()
+        return self.model_copy()
 
     def clip_to_img(self, img_w: int, img_h: int) -> Bbox:
         """
@@ -451,8 +440,8 @@ class Bbox:
         return Bbox(
             left=max(0, self.left),
             top=max(0, self.top),
-            right=min(img_w - 1, self.right),
-            bottom=min(img_h - 1, self.bottom),
+            right=min(img_w, self.right),
+            bottom=min(img_h, self.bottom),
         )
 
     # endregion
@@ -585,36 +574,6 @@ class Bbox:
     def aspect_ratio(self) -> float:
         """The aspect ratio of the Bbox (width over height)."""
         return self.width / self.height
-
-    def __eq__(self, other: Any) -> bool:
-        """Checks if two bounding boxes are equal."""
-        if not isinstance(other, Bbox):
-            return NotImplemented
-
-        return (
-            self.left == other.left
-            and self.top == other.top
-            and self.right == other.right
-            and self.bottom == other.bottom
-        )
-
-    def __repr__(self) -> str:
-        """
-        Returns a string representation of the bounding box.
-
-        Returns:
-            str: A string representation of the bounding box.
-        """
-        return f"Bbox(left={self.left}, top={self.top}, right={self.right}, bottom={self.bottom})"
-
-    def __str__(self) -> str:
-        """
-        Returns a string representation of the bounding box.
-
-        Returns:
-            str: A string representation of the bounding box.
-        """
-        return self.__repr__()
 
     __or__ = union
     __and__ = intersection

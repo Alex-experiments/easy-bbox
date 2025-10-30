@@ -14,25 +14,37 @@ class TestNMS(unittest.TestCase):
 
     def test_nms_single_bbox(self):
         """Test that the NMS function returns the single bbox when there is only one bbox."""
-        bboxes = [Bbox(0, 0, 10, 10)]
+        bboxes = [Bbox(left=0, top=0, right=10, bottom=10)]
         scores = [0.9]
-        self.assertEqual(nms(bboxes, scores), [(Bbox(0, 0, 10, 10), 0.9)])
+        self.assertEqual(
+            nms(bboxes, scores), [(Bbox(left=0, top=0, right=10, bottom=10), 0.9)]
+        )
 
     def test_nms_no_suppression(self):
         """Test that the NMS function returns all bboxes when there is no suppression."""
-        bboxes = [Bbox(0, 0, 10, 10), Bbox(20, 20, 30, 30)]
+        bboxes = [
+            Bbox(left=0, top=0, right=10, bottom=10),
+            Bbox(left=20, top=20, right=30, bottom=30),
+        ]
         scores = [0.9, 0.8]
         self.assertEqual(
             nms(bboxes, scores),
-            [(Bbox(0, 0, 10, 10), 0.9), (Bbox(20, 20, 30, 30), 0.8)],
+            [
+                (Bbox(left=0, top=0, right=10, bottom=10), 0.9),
+                (Bbox(left=20, top=20, right=30, bottom=30), 0.8),
+            ],
         )
 
     def test_nms_suppression(self):
         """Test that the NMS function suppresses bboxes with IoU above the threshold."""
-        bboxes = [Bbox(0, 0, 10, 10), Bbox(5, 5, 15, 15)]
+        bboxes = [
+            Bbox(left=0, top=0, right=10, bottom=10),
+            Bbox(left=5, top=5, right=15, bottom=15),
+        ]
         scores = [0.7, 0.8]
         self.assertListEqual(
-            nms(bboxes, scores, iou_threshold=0.1), [(Bbox(5, 5, 15, 15), 0.8)]
+            nms(bboxes, scores, iou_threshold=0.1),
+            [(Bbox(left=5, top=5, right=15, bottom=15), 0.8)],
         )
 
         # Assert that results are ordered by decreasing score
@@ -43,7 +55,7 @@ class TestNMS(unittest.TestCase):
 
     def test_nms_invalid_input(self):
         """Test that the NMS function raises a ValueError when the input is invalid."""
-        bboxes = [Bbox(0, 0, 10, 10)]
+        bboxes = [Bbox(left=0, top=0, right=10, bottom=10)]
         scores = [0.9, 0.8]
         with self.assertRaises(ValueError):
             nms(bboxes, scores)
