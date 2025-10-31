@@ -42,7 +42,61 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Easy-Bbox documentation</a></li>
+<li><a class="reference internal" href="#">Easy-Bbox documentation</a><ul>
+<li><a class="reference internal" href="#easy_bbox.Bbox"><code class="docutils literal notranslate"><span class="pre">Bbox</span></code></a><ul>
+<li><a class="reference internal" href="#easy_bbox.Bbox.left"><code class="docutils literal notranslate"><span class="pre">Bbox.left</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.top"><code class="docutils literal notranslate"><span class="pre">Bbox.top</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.right"><code class="docutils literal notranslate"><span class="pre">Bbox.right</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.bottom"><code class="docutils literal notranslate"><span class="pre">Bbox.bottom</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.area"><code class="docutils literal notranslate"><span class="pre">Bbox.area</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.aspect_ratio"><code class="docutils literal notranslate"><span class="pre">Bbox.aspect_ratio</span></code></a></li>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">Bbox.bottom</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.center"><code class="docutils literal notranslate"><span class="pre">Bbox.center</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.check_passwords_match"><code class="docutils literal notranslate"><span class="pre">Bbox.check_passwords_match()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.clip_to_img"><code class="docutils literal notranslate"><span class="pre">Bbox.clip_to_img()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.contains_point"><code class="docutils literal notranslate"><span class="pre">Bbox.contains_point()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.distance_to_point"><code class="docutils literal notranslate"><span class="pre">Bbox.distance_to_point()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.expand"><code class="docutils literal notranslate"><span class="pre">Bbox.expand()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.expand_uniform"><code class="docutils literal notranslate"><span class="pre">Bbox.expand_uniform()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.from_coco"><code class="docutils literal notranslate"><span class="pre">Bbox.from_coco()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.from_cwh"><code class="docutils literal notranslate"><span class="pre">Bbox.from_cwh()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.from_list"><code class="docutils literal notranslate"><span class="pre">Bbox.from_list()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.from_pascal_voc"><code class="docutils literal notranslate"><span class="pre">Bbox.from_pascal_voc()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.from_tlbr"><code class="docutils literal notranslate"><span class="pre">Bbox.from_tlbr()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.from_tlwh"><code class="docutils literal notranslate"><span class="pre">Bbox.from_tlwh()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.from_xyxy"><code class="docutils literal notranslate"><span class="pre">Bbox.from_xyxy()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.height"><code class="docutils literal notranslate"><span class="pre">Bbox.height</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.intersection"><code class="docutils literal notranslate"><span class="pre">Bbox.intersection()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.iou"><code class="docutils literal notranslate"><span class="pre">Bbox.iou()</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">Bbox.left</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.model_config"><code class="docutils literal notranslate"><span class="pre">Bbox.model_config</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.overlaps"><code class="docutils literal notranslate"><span class="pre">Bbox.overlaps()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.pad_to_aspect_ratio"><code class="docutils literal notranslate"><span class="pre">Bbox.pad_to_aspect_ratio()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.pad_to_square"><code class="docutils literal notranslate"><span class="pre">Bbox.pad_to_square()</span></code></a></li>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">Bbox.right</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.scale"><code class="docutils literal notranslate"><span class="pre">Bbox.scale()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.shift"><code class="docutils literal notranslate"><span class="pre">Bbox.shift()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.to_albu"><code class="docutils literal notranslate"><span class="pre">Bbox.to_albu()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.to_coco"><code class="docutils literal notranslate"><span class="pre">Bbox.to_coco()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.to_cwh"><code class="docutils literal notranslate"><span class="pre">Bbox.to_cwh()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.to_list"><code class="docutils literal notranslate"><span class="pre">Bbox.to_list()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.to_norm_cwh"><code class="docutils literal notranslate"><span class="pre">Bbox.to_norm_cwh()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.to_norm_tlbr"><code class="docutils literal notranslate"><span class="pre">Bbox.to_norm_tlbr()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.to_norm_tlwh"><code class="docutils literal notranslate"><span class="pre">Bbox.to_norm_tlwh()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.to_pascal_voc"><code class="docutils literal notranslate"><span class="pre">Bbox.to_pascal_voc()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.to_polygon"><code class="docutils literal notranslate"><span class="pre">Bbox.to_polygon()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.to_tlbr"><code class="docutils literal notranslate"><span class="pre">Bbox.to_tlbr()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.to_tlwh"><code class="docutils literal notranslate"><span class="pre">Bbox.to_tlwh()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.to_xyxy"><code class="docutils literal notranslate"><span class="pre">Bbox.to_xyxy()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.to_yolo"><code class="docutils literal notranslate"><span class="pre">Bbox.to_yolo()</span></code></a></li>
+<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">Bbox.top</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.union"><code class="docutils literal notranslate"><span class="pre">Bbox.union()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.width"><code class="docutils literal notranslate"><span class="pre">Bbox.width</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#easy_bbox.nms"><code class="docutils literal notranslate"><span class="pre">nms()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </div>
         </div>
@@ -76,6 +130,874 @@
 documentation for details.</p>
 <div class="toctree-wrapper compound">
 </div>
+<p id="module-easy_bbox">bbox - A Python library for manipulating bounding boxes in various coordinate formats.</p>
+<p>This library provides the <cite>Bbox</cite> class and utility functions for manipulating bounding boxes
+in various coordinate formats (Pascal VOC, COCO, YOLO, etc.). Supports transformations,
+geometric operations, and conversions.</p>
+<dl class="simple">
+<dt>Classes:</dt><dd><p>Bbox: A class to represent a bounding box.</p>
+</dd>
+<dt>Functions:</dt><dd><p>nms: Perform Non-Maximum Suppression on a list of bounding boxes.</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="easy_bbox.Bbox">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">easy_bbox.</span></span><span class="sig-name descname"><span class="pre">Bbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>A class to represent a Bbox (inherits from Pydantic BaseModel).</p>
+<p>The bbox is stored in Pascal_VOC format:
+top-left, bottom-right with a top-left origin (PIL coord system).
+(meaning that top &lt; bottom)</p>
+<p>The bottom and right edges are considered excluded from the Bbox for compatibility with array
+slicing and PIL image cropping features (in case of Int Bboxes).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.left">
+<span class="sig-name descname"><span class="pre">left</span></span><a class="headerlink" href="#easy_bbox.Bbox.left" title="Link to this definition"></a></dt>
+<dd><p>The left coordinate of the bounding box.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.top">
+<span class="sig-name descname"><span class="pre">top</span></span><a class="headerlink" href="#easy_bbox.Bbox.top" title="Link to this definition"></a></dt>
+<dd><p>The top coordinate of the bounding box.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.right">
+<span class="sig-name descname"><span class="pre">right</span></span><a class="headerlink" href="#easy_bbox.Bbox.right" title="Link to this definition"></a></dt>
+<dd><p>The right coordinate of the bounding box.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.bottom">
+<span class="sig-name descname"><span class="pre">bottom</span></span><a class="headerlink" href="#easy_bbox.Bbox.bottom" title="Link to this definition"></a></dt>
+<dd><p>The bottom coordinate of the bounding box.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.area">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">area</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#easy_bbox.Bbox.area" title="Link to this definition"></a></dt>
+<dd><p>The area of the Bbox</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.aspect_ratio">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">aspect_ratio</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#easy_bbox.Bbox.aspect_ratio" title="Link to this definition"></a></dt>
+<dd><p>The aspect ratio of the Bbox (width over height).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">bottom</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.center">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">center</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#easy_bbox.Bbox.center" title="Link to this definition"></a></dt>
+<dd><p>The center of the Bbox in (x, y) format.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.check_passwords_match">
+<span class="sig-name descname"><span class="pre">check_passwords_match</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.check_passwords_match"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.check_passwords_match" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.clip_to_img">
+<span class="sig-name descname"><span class="pre">clip_to_img</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img_w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_h</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.clip_to_img"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.clip_to_img" title="Link to this definition"></a></dt>
+<dd><p>Returns a clipped Bbox to the image dimensions.</p>
+<p>Remember that the bottom and right edges are inclusive, so
+<cite>Bbox(left=-10, top=-20, right=100, bottom=120).clipt_to_img(img_w=32, img_h=64)</cite>
+returns <cite>Bbox(left=0, top=0, right=31, bottom=63)</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_w</strong> (<em>int</em>) – The image width in pixels.</p></li>
+<li><p><strong>img_h</strong> (<em>int</em>) – The image height in pixels.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The clipped Bbox.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.contains_point">
+<span class="sig-name descname"><span class="pre">contains_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.contains_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.contains_point" title="Link to this definition"></a></dt>
+<dd><p>Checks if a point is inside the bounding box.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em>) – The x-coordinate of the point.</p></li>
+<li><p><strong>y</strong> (<em>float</em>) – The y-coordinate of the point.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the point is inside the bounding box, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.distance_to_point">
+<span class="sig-name descname"><span class="pre">distance_to_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.distance_to_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.distance_to_point" title="Link to this definition"></a></dt>
+<dd><p>Calculates the distance from the bounding box to a point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em>) – The x-coordinate of the point.</p></li>
+<li><p><strong>y</strong> (<em>float</em>) – The y-coordinate of the point.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The distance from the bounding box to the point.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.expand">
+<span class="sig-name descname"><span class="pre">expand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.expand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.expand" title="Link to this definition"></a></dt>
+<dd><p>Return an expanded Bbox by the specified padding for each side.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>left</strong> (<em>float</em><em>, </em><em>optional</em>) – The amount to expand the left side of the bounding box by.
+Defaults to 0.</p></li>
+<li><p><strong>top</strong> (<em>float</em><em>, </em><em>optional</em>) – The amount to expand the top side of the bounding box by.
+Defaults to 0.</p></li>
+<li><p><strong>right</strong> (<em>float</em><em>, </em><em>optional</em>) – The amount to expand the right side of the bounding box by.
+Defaults to 0.</p></li>
+<li><p><strong>bottom</strong> (<em>float</em><em>, </em><em>optional</em>) – The amount to expand the bottom side of the bounding box by.
+Defaults to 0.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The expanded Bbox instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.expand_uniform">
+<span class="sig-name descname"><span class="pre">expand_uniform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">padding</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.expand_uniform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.expand_uniform" title="Link to this definition"></a></dt>
+<dd><p>Return an expanded Bbox by the specified padding.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>padding</strong> (<em>float</em>) – The amount to expand the bounding box by.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The expanded Bbox instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.from_coco">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_coco</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tlwh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easy_bbox.Bbox.from_coco" title="Link to this definition"></a></dt>
+<dd><p>Initializes the bounding box from top-left and width-height coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tlwh</strong> (<em>Sequence</em><em>[</em><em>float</em><em>]</em>) – A sequence containing the top-left and width-height coordinates
+of the bounding box in the format (left, top, width, height).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The Bbox instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the length of the sequence is not 4, or if the Bbox is not valid
+    (ie <cite>width &lt; 0</cite> or <cite>height &lt; 0</cite>).</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bbox</span> <span class="o">=</span> <span class="n">Bbox</span><span class="o">.</span><span class="n">from_tlwh</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">bbox</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span>
+<span class="go">10 20 30 50</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.from_cwh">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_cwh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cwh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.from_cwh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.from_cwh" title="Link to this definition"></a></dt>
+<dd><p>Initializes the bounding box from center and width-height coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cwh</strong> (<em>Sequence</em><em>[</em><em>float</em><em>]</em>) – A sequence containing the center and width-height coordinates
+of the bounding box in the format (center_x, center_y, width, height).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The Bbox instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the length of the sequence is not 4, or if the Bbox is not valid
+    (ie <cite>width &lt; 0</cite> or <cite>height &lt; 0</cite>).</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bbox</span> <span class="o">=</span> <span class="n">Bbox</span><span class="o">.</span><span class="n">from_cwh</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">bbox</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span>
+<span class="go">10 20 30 50</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.from_list">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tlbr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easy_bbox.Bbox.from_list" title="Link to this definition"></a></dt>
+<dd><p>Initializes the bounding box from top-left and bottom-right coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tlbr</strong> (<em>Sequence</em><em>[</em><em>float</em><em>]</em>) – A sequence containing the top-left and bottom-right coordinates
+of the bounding box in the format (left, top, right, bottom).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The Bbox instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the length of the sequence is not 4, or if the Bbox is not valid
+    (ie <cite>left &gt; right</cite> or <cite>top &gt; bottom</cite>).</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bbox</span> <span class="o">=</span> <span class="n">Bbox</span><span class="o">.</span><span class="n">from_tlbr</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">bbox</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span>
+<span class="go">10 20 30 40</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.from_pascal_voc">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_pascal_voc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tlbr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easy_bbox.Bbox.from_pascal_voc" title="Link to this definition"></a></dt>
+<dd><p>Initializes the bounding box from top-left and bottom-right coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tlbr</strong> (<em>Sequence</em><em>[</em><em>float</em><em>]</em>) – A sequence containing the top-left and bottom-right coordinates
+of the bounding box in the format (left, top, right, bottom).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The Bbox instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the length of the sequence is not 4, or if the Bbox is not valid
+    (ie <cite>left &gt; right</cite> or <cite>top &gt; bottom</cite>).</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bbox</span> <span class="o">=</span> <span class="n">Bbox</span><span class="o">.</span><span class="n">from_tlbr</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">bbox</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span>
+<span class="go">10 20 30 40</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.from_tlbr">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_tlbr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tlbr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.from_tlbr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.from_tlbr" title="Link to this definition"></a></dt>
+<dd><p>Initializes the bounding box from top-left and bottom-right coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tlbr</strong> (<em>Sequence</em><em>[</em><em>float</em><em>]</em>) – A sequence containing the top-left and bottom-right coordinates
+of the bounding box in the format (left, top, right, bottom).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The Bbox instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the length of the sequence is not 4, or if the Bbox is not valid
+    (ie <cite>left &gt; right</cite> or <cite>top &gt; bottom</cite>).</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bbox</span> <span class="o">=</span> <span class="n">Bbox</span><span class="o">.</span><span class="n">from_tlbr</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">bbox</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span>
+<span class="go">10 20 30 40</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.from_tlwh">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_tlwh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tlwh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.from_tlwh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.from_tlwh" title="Link to this definition"></a></dt>
+<dd><p>Initializes the bounding box from top-left and width-height coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tlwh</strong> (<em>Sequence</em><em>[</em><em>float</em><em>]</em>) – A sequence containing the top-left and width-height coordinates
+of the bounding box in the format (left, top, width, height).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The Bbox instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the length of the sequence is not 4, or if the Bbox is not valid
+    (ie <cite>width &lt; 0</cite> or <cite>height &lt; 0</cite>).</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bbox</span> <span class="o">=</span> <span class="n">Bbox</span><span class="o">.</span><span class="n">from_tlwh</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">bbox</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span>
+<span class="go">10 20 30 50</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.from_xyxy">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_xyxy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tlbr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easy_bbox.Bbox.from_xyxy" title="Link to this definition"></a></dt>
+<dd><p>Initializes the bounding box from top-left and bottom-right coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tlbr</strong> (<em>Sequence</em><em>[</em><em>float</em><em>]</em>) – A sequence containing the top-left and bottom-right coordinates
+of the bounding box in the format (left, top, right, bottom).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The Bbox instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the length of the sequence is not 4, or if the Bbox is not valid
+    (ie <cite>left &gt; right</cite> or <cite>top &gt; bottom</cite>).</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bbox</span> <span class="o">=</span> <span class="n">Bbox</span><span class="o">.</span><span class="n">from_tlbr</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">bbox</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">bbox</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span>
+<span class="go">10 20 30 40</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.height">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">height</span></span><a class="headerlink" href="#easy_bbox.Bbox.height" title="Link to this definition"></a></dt>
+<dd><p>The height of the Bbox.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.intersection">
+<span class="sig-name descname"><span class="pre">intersection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.intersection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.intersection" title="Link to this definition"></a></dt>
+<dd><p>Calculates the intersection with another Bbox. If the resulting Bbox is not valid (ie
+<cite>left &gt; right</cite> or <cite>top &gt; bottom</cite>, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox"><em>Bbox</em></a>) – The other bounding box to calculate the intersection with.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The intersection of the two bounding boxes if valid.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.iou">
+<span class="sig-name descname"><span class="pre">iou</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.iou"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.iou" title="Link to this definition"></a></dt>
+<dd><p>Calculates the Intersection over Union (IoU) with another bounding box.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox"><em>Bbox</em></a>) – The other Bbox.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The IoU between the two bounding boxes.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">left</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar[ConfigDict]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#easy_bbox.Bbox.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.overlaps">
+<span class="sig-name descname"><span class="pre">overlaps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.overlaps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.overlaps" title="Link to this definition"></a></dt>
+<dd><p>Checks if the current bounding box overlaps with another bounding box.</p>
+<p>Two bboxes are considered as overlapping if they intersect with a non-zero area.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox"><em>Bbox</em></a>) – The other bounding box to check for overlap.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the bounding boxes overlap, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.pad_to_aspect_ratio">
+<span class="sig-name descname"><span class="pre">pad_to_aspect_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_ratio</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.pad_to_aspect_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.pad_to_aspect_ratio" title="Link to this definition"></a></dt>
+<dd><p>Returns a padded Bbox to achieve the target aspect ratio.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>target_ratio</strong> (<em>float</em>) – The target aspect ratio.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A Bbox instance padded to the correct ratio.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If target_ratio is &lt;= 0.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.pad_to_square">
+<span class="sig-name descname"><span class="pre">pad_to_square</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.pad_to_square"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.pad_to_square" title="Link to this definition"></a></dt>
+<dd><p>Returns a padded Bbox to make it a square.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">right</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.scale" title="Link to this definition"></a></dt>
+<dd><p>Return a scaled Bbox by the specified scale factor. The scaling will be from the center.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>scale_factor</strong> (<em>float</em>) – The factor to scale the bounding box by. Width and height will
+be scaled by this factor.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The scaled Bbox instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the scale is strictly negative.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.shift">
+<span class="sig-name descname"><span class="pre">shift</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">horizontal_shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertical_shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.shift"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.shift" title="Link to this definition"></a></dt>
+<dd><p>Return a shifted Bbox by the specified horizontal and vertical amounts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>horizontal_shift</strong> (<em>float</em><em>, </em><em>optional</em>) – The amount to shift the bounding box horizontally.
+Defaults to 0.</p></li>
+<li><p><strong>vertical_shift</strong> (<em>float</em><em>, </em><em>optional</em>) – The amount to shift the bounding box vertically.
+Defaults to 0.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The shifted Bbox instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.to_albu">
+<span class="sig-name descname"><span class="pre">to_albu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img_w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_h</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easy_bbox.Bbox.to_albu" title="Link to this definition"></a></dt>
+<dd><p>Returns the bounding box coordinates in Top-Left, Bottom-Right format, normalized
+based on the image dimensions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_w</strong> (<em>int</em>) – The image width in pixels.</p></li>
+<li><p><strong>img_h</strong> (<em>int</em>) – The image height in pixels.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The bounding box coordinates [x_min, y_min, x_max, y_max].</dt><dd><p>x_min and y_min are the coordinates of the top-left corner of the bounding box.
+x_max and y_max are the coordinates of the bottom-right corner of the bounding box.
+All the returned values are <strong>NORMALIZED</strong> based on the image dimensions.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.to_coco">
+<span class="sig-name descname"><span class="pre">to_coco</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#easy_bbox.Bbox.to_coco" title="Link to this definition"></a></dt>
+<dd><p>Returns the bounding box coordinates in Top-Left, Width-Height format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>The bounding box coordinates [x_min, y_min, width, height].</dt><dd><p>x_min and y_min are coordinates of the top-left corner of the bounding box.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.to_cwh">
+<span class="sig-name descname"><span class="pre">to_cwh</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.to_cwh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.to_cwh" title="Link to this definition"></a></dt>
+<dd><p>Returns the bounding box coordinates in Center, Width-Height format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The bounding box coordinates [x_center, y_center, width, height].</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.to_list">
+<span class="sig-name descname"><span class="pre">to_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#easy_bbox.Bbox.to_list" title="Link to this definition"></a></dt>
+<dd><p>Returns the bounding box coordinates in Top-Left, Bottom-Right format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>The bounding box coordinates [x_min, y_min, x_max, y_max].</dt><dd><p>x_min and y_min are the coordinates of the top-left corner of the bounding box.
+x_max and y_max are the coordinates of the bottom-right corner of the bounding box.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.to_norm_cwh">
+<span class="sig-name descname"><span class="pre">to_norm_cwh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img_w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_h</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.to_norm_cwh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.to_norm_cwh" title="Link to this definition"></a></dt>
+<dd><p>Returns the bounding box coordinates in Center, Width-Height format, normalized
+based on the image dimensions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_w</strong> (<em>int</em>) – The image width in pixels.</p></li>
+<li><p><strong>img_h</strong> (<em>int</em>) – The image height in pixels.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The NORMALIZED bounding box coordinates [x_center, y_center, width,
+height].</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.to_norm_tlbr">
+<span class="sig-name descname"><span class="pre">to_norm_tlbr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img_w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_h</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.to_norm_tlbr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.to_norm_tlbr" title="Link to this definition"></a></dt>
+<dd><p>Returns the bounding box coordinates in Top-Left, Bottom-Right format, normalized
+based on the image dimensions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_w</strong> (<em>int</em>) – The image width in pixels.</p></li>
+<li><p><strong>img_h</strong> (<em>int</em>) – The image height in pixels.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The bounding box coordinates [x_min, y_min, x_max, y_max].</dt><dd><p>x_min and y_min are the coordinates of the top-left corner of the bounding box.
+x_max and y_max are the coordinates of the bottom-right corner of the bounding box.
+All the returned values are <strong>NORMALIZED</strong> based on the image dimensions.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.to_norm_tlwh">
+<span class="sig-name descname"><span class="pre">to_norm_tlwh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img_w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_h</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.to_norm_tlwh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.to_norm_tlwh" title="Link to this definition"></a></dt>
+<dd><p>Returns the bounding box coordinates in Top-Left, Width-Height format, normalized
+based on the image dimensions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_w</strong> (<em>int</em>) – The image width in pixels.</p></li>
+<li><p><strong>img_h</strong> (<em>int</em>) – The image height in pixels.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The bounding box coordinates [x_min, y_min, width, height].</dt><dd><p>x_min and y_min are the coordinates of the top-left
+corner of the bounding box.
+All the returned values are <strong>NORMALIZED</strong> based on the image dimensions.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.to_pascal_voc">
+<span class="sig-name descname"><span class="pre">to_pascal_voc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#easy_bbox.Bbox.to_pascal_voc" title="Link to this definition"></a></dt>
+<dd><p>Returns the bounding box coordinates in Top-Left, Bottom-Right format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>The bounding box coordinates [x_min, y_min, x_max, y_max].</dt><dd><p>x_min and y_min are the coordinates of the top-left corner of the bounding box.
+x_max and y_max are the coordinates of the bottom-right corner of the bounding box.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.to_polygon">
+<span class="sig-name descname"><span class="pre">to_polygon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.to_polygon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.to_polygon" title="Link to this definition"></a></dt>
+<dd><p>Returns the bounding box corners as points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The corners coordinates in (x, y) format.
+The order is <cite>top_left &gt; top_right &gt; bottom_right &gt; bottom_left</cite></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[Tuple[float, float]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.to_tlbr">
+<span class="sig-name descname"><span class="pre">to_tlbr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.to_tlbr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.to_tlbr" title="Link to this definition"></a></dt>
+<dd><p>Returns the bounding box coordinates in Top-Left, Bottom-Right format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>The bounding box coordinates [x_min, y_min, x_max, y_max].</dt><dd><p>x_min and y_min are the coordinates of the top-left corner of the bounding box.
+x_max and y_max are the coordinates of the bottom-right corner of the bounding box.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.to_tlwh">
+<span class="sig-name descname"><span class="pre">to_tlwh</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.to_tlwh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.to_tlwh" title="Link to this definition"></a></dt>
+<dd><p>Returns the bounding box coordinates in Top-Left, Width-Height format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>The bounding box coordinates [x_min, y_min, width, height].</dt><dd><p>x_min and y_min are coordinates of the top-left corner of the bounding box.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.to_xyxy">
+<span class="sig-name descname"><span class="pre">to_xyxy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#easy_bbox.Bbox.to_xyxy" title="Link to this definition"></a></dt>
+<dd><p>Returns the bounding box coordinates in Top-Left, Bottom-Right format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>The bounding box coordinates [x_min, y_min, x_max, y_max].</dt><dd><p>x_min and y_min are the coordinates of the top-left corner of the bounding box.
+x_max and y_max are the coordinates of the bottom-right corner of the bounding box.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.to_yolo">
+<span class="sig-name descname"><span class="pre">to_yolo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img_w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_h</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#easy_bbox.Bbox.to_yolo" title="Link to this definition"></a></dt>
+<dd><p>Returns the bounding box coordinates in Center, Width-Height format, normalized
+based on the image dimensions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_w</strong> (<em>int</em>) – The image width in pixels.</p></li>
+<li><p><strong>img_h</strong> (<em>int</em>) – The image height in pixels.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The NORMALIZED bounding box coordinates [x_center, y_center, width,
+height].</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">top</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.union">
+<span class="sig-name descname"><span class="pre">union</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.union"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.union" title="Link to this definition"></a></dt>
+<dd><p>Calculates the minimal Bbox that englobes this one AND the other.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox"><em>Bbox</em></a>) – The other bounding box to calculate the union with.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The minimal englobing Bbox.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.width">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">width</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#easy_bbox.Bbox.width" title="Link to this definition"></a></dt>
+<dd><p>The width of the Bbox.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="easy_bbox.nms">
+<span class="sig-prename descclassname"><span class="pre">easy_bbox.</span></span><span class="sig-name descname"><span class="pre">nms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bboxes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scores</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iou_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/utils.html#nms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.nms" title="Link to this definition"></a></dt>
+<dd><p>Perform Non-Maximum Suppression on a list of bounding boxes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bboxes</strong> (<em>List</em><em>[</em><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox"><em>Bbox</em></a><em>]</em>) – List of bounding boxes.</p></li>
+<li><p><strong>scores</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – List of confidence scores for each bounding box.</p></li>
+<li><p><strong>iou_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – IoU threshold for suppression. Defaults to 0.5.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of selected bounding boxes and their scores.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Tuple[<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a>, float]]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the length of bboxes and scores do not match.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 

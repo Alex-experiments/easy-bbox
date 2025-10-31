@@ -15,7 +15,7 @@ documentation for details.
    :maxdepth: 2
    :caption: Contents:
 
-.. automodule:: mypackage
+.. automodule:: easy_bbox
     :members:
     :undoc-members:
     :show-inheritance:
