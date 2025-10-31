@@ -554,7 +554,7 @@ dependencies = [
     { name = "pydantic" },
 ]
 
-[package.dev-dependencies]
+[package.optional-dependencies]
 dev = [
     { name = "coverage", version = "7.10.7", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
     { name = "coverage", version = "7.11.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
@@ -570,19 +570,18 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "pydantic", specifier = ">=2.0.0" }]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "coverage" },
-    { name = "mypy" },
-    { name = "pre-commit" },
-    { name = "pytest", specifier = ">=7.0" },
-    { name = "pytest-cov" },
-    { name = "ruff" },
-    { name = "sphinx", specifier = ">=7.4.7" },
-    { name = "twine" },
+requires-dist = [
+    { name = "coverage", marker = "extra == 'dev'" },
+    { name = "mypy", marker = "extra == 'dev'" },
+    { name = "pre-commit", marker = "extra == 'dev'" },
+    { name = "pydantic", specifier = ">=2.0.0" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.0" },
+    { name = "pytest-cov", marker = "extra == 'dev'" },
+    { name = "ruff", marker = "extra == 'dev'" },
+    { name = "sphinx", marker = "extra == 'dev'", specifier = ">=7.4.7" },
+    { name = "twine", marker = "extra == 'dev'" },
 ]
+provides-extras = ["dev"]
 
 [[package]]
 name = "exceptiongroup"

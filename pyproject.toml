@@ -30,15 +30,14 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/Alex-experiments/easy-bbox"
 Repository = "https://github.com/Alex-experiments/easy-bbox"
-Issues = "https://github.com/Alex-experiments/easy-bbox/issues"
+Documentation = "https://alex-experiments.github.io/easy-bbox"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["easy_bbox*"]
 
-[dependency-groups]
+[project.optional-dependencies]
 dev = [
     "sphinx>=7.4.7",
     "pytest>=7.0",

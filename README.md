@@ -1,8 +1,10 @@
 # Easy Bbox
 
 <p align="center">
+    <a href="https://pypi.org/project/easy-bbox"><img alt="Package version" src="https://badgen.net/pypi/v/easy-bbox/"></a>
     <a href="https://github.com/Alex-experiments/easy-bbox/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
     <a href="https://github.com/Alex-experiments/easy-bbox/actions"><img alt="Coverage" src="https://Alex-experiments.github.io/easy-bbox/badges/coverage.svg"></a>
+    <a href="https://alex-experiments.github.io/easy-bbox"><img alt="Documentation" src="https://img.shields.io/badge/Documentation-gh--pages-blue"></a>
 </p>
 
 
@@ -109,6 +111,58 @@ dist = bbox1.distance_to_point((5, 10))
 selected_bboxes = nms(bboxes, scores, iou_threshold=0.5)
 ```
 
-## Contribution
+## Development
 
-Contribution are welcome # TODO
+Contribution are welcome! Please feel free to submit a Pull Request. Here are the steps to contribute to the project:
+
+### Prerequisites
+
+- Python 3.9+
+
+### Installation
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/Alex-experiments/easy-bbox.git
+cd easy-bbox
+
+# 2. Set-up the venv
+uv venv
+uv pip install -e .[dev]
+```
+
+### Testing
+
+Run tests using pytest:
+
+```bash
+pytest
+```
+
+### Code Quality
+
+This project uses pre-commit hooks for code quality:
+
+```bash
+pre-commit install
+```
+
+This will set up the git hook scripts. Now pre-commit will run automatically on git commit.
+
+### Documentation
+
+Documentation is build automatically when the main branch is updated. You can generate it locally documentation using Sphinx:
+
+```bash
+cd docs
+make html
+```
+
+But you might need to install these packages beforehand:
+```bash
+pip install sphinx sphinx_rtd_theme sphinx-autodoc-typehints
+```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
