@@ -41,7 +41,7 @@ class Bbox(BaseModel):
         @model_validator(mode="after")
         def check_passwords_match(self) -> Self:
             if self.left > self.right or self.top > self.bottom:
-                raise ValueError("The Bbow is not valid (negative width or height).")
+                raise ValueError("The Bbox is not valid (negative width or height).")
             return self
     else:
         # Ensure compatibility with previous pydantic versions
@@ -50,7 +50,7 @@ class Bbox(BaseModel):
         @classmethod
         def check_passwords_match(cls, model: "Bbox") -> "Bbox":
             if model.left > model.right or model.top > model.bottom:
-                raise ValueError("The Bbow is not valid (negative width or height).")
+                raise ValueError("The Bbox is not valid (negative width or height).")
             return model
 
     # region From methods

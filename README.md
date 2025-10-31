@@ -51,7 +51,7 @@ bbox = Bbox.from_cwh((20, 30, 20, 20))
 ### Transformations
 Easy Bbox provides several methods for transforming bounding boxes:
 
-![bbox_transformations](images/bbox_transformations.png)
+![bbox_transformations](https://raw.githubusercontent.com/Alex-experiments/easy-bbox/main/images/bbox_transformations.png)
 
 ### Conversions
 Easy Bbox provides methods for converting between different coordinate formats:
@@ -82,7 +82,7 @@ polygon = bbox.to_polygon()
 ### Utility 
 Easy Bbox includes utility functions for common tasks:
 
-![bbox_utils](images/bbox_utils.png)
+![bbox_utils](https://raw.githubusercontent.com/Alex-experiments/easy-bbox/main/images/bbox_utils.png)
 
 ```py
 from easy_bbox import nms
