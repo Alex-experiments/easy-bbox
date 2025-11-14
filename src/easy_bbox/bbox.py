@@ -8,7 +8,8 @@ transformations, geometric operations, and conversions.
 
 from __future__ import annotations
 
-from typing import List, Optional, Self, Sequence, Tuple
+from typing import List, Optional, Sequence, Tuple
+from typing_extensions import Self
 
 from pydantic import BaseModel, model_validator, __version__ as pydantic_version
 
