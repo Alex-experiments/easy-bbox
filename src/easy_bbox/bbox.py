@@ -146,18 +146,33 @@ class Bbox(BaseModel):
     # endregion
 
     # region To methods
-    def to_tlbr(self) -> List[float]:
+    def to_tlbr(self) -> Tuple[float, float, float, float]:
         """
         Returns the bounding box coordinates in Top-Left, Bottom-Right format.
 
         Returns:
-            List[float]: The bounding box coordinates [x_min, y_min, x_max, y_max].
-                x_min and y_min are the coordinates of the top-left corner of the bounding box.
-                x_max and y_max are the coordinates of the bottom-right corner of the bounding box.
+            Tuple[float, float, float, float]: The bounding box coordinates (x_min, y_min,
+            x_max, y_max).
+
+            x_min and y_min are the coordinates of the top-left corner of the bounding box.
+            x_max and y_max are the coordinates of the bottom-right corner of the bounding box.
+        """
+        return (self.left, self.top, self.right, self.bottom)
+
+    def to_list(self) -> List[float]:
+        """
+        Returns the bounding box coordinates in Top-Left, Bottom-Right format.
+
+        Returns:
+            List[float]: The bounding box coordinates [x_min, y_min,
+            x_max, y_max].
+
+            x_min and y_min are the coordinates of the top-left corner of the bounding box.
+            x_max and y_max are the coordinates of the bottom-right corner of the bounding box.
         """
         return [self.left, self.top, self.right, self.bottom]
 
-    def to_norm_tlbr(self, img_w: int, img_h: int) -> List[float]:
+    def to_norm_tlbr(self, img_w: int, img_h: int) -> Tuple[float, float, float, float]:
         """
         Returns the bounding box coordinates in Top-Left, Bottom-Right format, normalized
         based on the image dimensions.
@@ -167,29 +182,34 @@ class Bbox(BaseModel):
             img_h (int): The image height in pixels.
 
         Returns:
-            List[float]: The bounding box coordinates [x_min, y_min, x_max, y_max].
-                x_min and y_min are the coordinates of the top-left corner of the bounding box.
-                x_max and y_max are the coordinates of the bottom-right corner of the bounding box.
-                All the returned values are **NORMALIZED** based on the image dimensions.
+            Tuple[float, float, float, float]: The bounding box coordinates (x_min, y_min,
+            x_max, y_max).
+
+            x_min and y_min are the coordinates of the top-left corner of the bounding box.
+            x_max and y_max are the coordinates of the bottom-right corner of the bounding box.
+
+            All the returned values are **NORMALIZED** based on the image dimensions.
         """
-        return [
+        return (
             self.left / img_w,
             self.top / img_h,
             self.right / img_w,
             self.bottom / img_h,
-        ]
+        )
 
-    def to_tlwh(self) -> List[float]:
+    def to_tlwh(self) -> Tuple[float, float, float, float]:
         """
         Returns the bounding box coordinates in Top-Left, Width-Height format.
 
         Returns:
-            List[float]: The bounding box coordinates [x_min, y_min, width, height].
-                x_min and y_min are coordinates of the top-left corner of the bounding box.
-        """
-        return [self.left, self.top, self.width, self.height]
+            Tuple[float, float, float, float]: The bounding box coordinates (x_min, y_min,
+            width, height).
 
-    def to_norm_tlwh(self, img_w: int, img_h: int) -> List[float]:
+            x_min and y_min are coordinates of the top-left corner of the bounding box.
+        """
+        return (self.left, self.top, self.width, self.height)
+
+    def to_norm_tlwh(self, img_w: int, img_h: int) -> Tuple[float, float, float, float]:
         """
         Returns the bounding box coordinates in Top-Left, Width-Height format, normalized
         based on the image dimensions.
@@ -199,28 +219,31 @@ class Bbox(BaseModel):
             img_h (int): The image height in pixels.
 
         Returns:
-            List[float]: The bounding box coordinates [x_min, y_min, width, height].
-                x_min and y_min are the coordinates of the top-left
-                corner of the bounding box.
-                All the returned values are **NORMALIZED** based on the image dimensions.
+            Tuple[float, float, float, float]: The bounding box coordinates [x_min, y_min,
+            width, height].
+
+            x_min and y_min are the coordinates of the top-left corner of the bounding box.
+
+            All the returned values are **NORMALIZED** based on the image dimensions.
         """
-        return [
+        return (
             self.left / img_w,
             self.top / img_h,
             self.right / img_w,
             self.bottom / img_h,
-        ]
+        )
 
-    def to_cwh(self) -> List[float]:
+    def to_cwh(self) -> Tuple[float, float, float, float]:
         """
         Returns the bounding box coordinates in Center, Width-Height format.
 
         Returns:
-            List[float]: The bounding box coordinates [x_center, y_center, width, height].
+            Tuple[float, float, float, float]: The bounding box coordinates (x_center, y_center,
+            width, height).
         """
-        return [*self.center, self.width, self.height]
+        return (*self.center, self.width, self.height)
 
-    def to_norm_cwh(self, img_w: int, img_h: int) -> List[float]:
+    def to_norm_cwh(self, img_w: int, img_h: int) -> Tuple[float, float, float, float]:
         """
         Returns the bounding box coordinates in Center, Width-Height format, normalized
         based on the image dimensions.
@@ -230,30 +253,36 @@ class Bbox(BaseModel):
             img_h (int): The image height in pixels.
 
         Returns:
-            List[float]: The NORMALIZED bounding box coordinates [x_center, y_center, width,
-            height].
+            Tuple[float, float, float, float]: The NORMALIZED bounding box
+            coordinates (x_center, y_center, width, height).
         """
         cx, cy = self.center
-        return [cx / img_w, cy / img_h, self.width / img_w, self.height / img_h]
+        return (cx / img_w, cy / img_h, self.width / img_w, self.height / img_h)
 
-    def to_polygon(self) -> List[Tuple[float, float]]:
+    def to_polygon(
+        self,
+    ) -> Tuple[
+        Tuple[float, float],
+        Tuple[float, float],
+        Tuple[float, float],
+        Tuple[float, float],
+    ]:
         """
         Returns the bounding box corners as points.
 
         Returns:
-            List[Tuple[float, float]]: The corners coordinates in (x, y) format.
+            The corners coordinates in (x, y) format.
             The order is `top_left > top_right > bottom_right > bottom_left`
         """
-        return [
+        return (
             (self.left, self.top),
             (self.right, self.top),
             (self.right, self.bottom),
             (self.left, self.bottom),
-        ]
+        )
 
     to_pascal_voc = to_tlbr
     to_xyxy = to_tlbr
-    to_list = to_tlbr
     to_albu = to_norm_tlbr
     to_coco = to_tlwh
     to_yolo = to_norm_cwh
@@ -426,9 +455,9 @@ class Bbox(BaseModel):
         """
         Returns a clipped Bbox to the image dimensions.
 
-        Remember that the bottom and right edges are inclusive, so
-        `Bbox(left=-10, top=-20, right=100, bottom=120).clipt_to_img(img_w=32, img_h=64)`
-        returns `Bbox(left=0, top=0, right=31, bottom=63)`
+        Remember that the bottom and right edges are considered excluded from the bbox, so
+        `Bbox(left=-10, top=-20, right=100, bottom=120).clip_to_img(img_w=32, img_h=64)`
+        returns `Bbox(left=0, top=0, right=32, bottom=64)`
 
         Args:
             img_w (int): The image width in pixels.
