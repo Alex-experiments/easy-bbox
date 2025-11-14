@@ -75,6 +75,7 @@
 <li><a class="reference internal" href="#easy_bbox.Bbox.pad_to_square"><code class="docutils literal notranslate"><span class="pre">Bbox.pad_to_square()</span></code></a></li>
 <li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">Bbox.right</span></code></a></li>
 <li><a class="reference internal" href="#easy_bbox.Bbox.scale"><code class="docutils literal notranslate"><span class="pre">Bbox.scale()</span></code></a></li>
+<li><a class="reference internal" href="#easy_bbox.Bbox.scale_area"><code class="docutils literal notranslate"><span class="pre">Bbox.scale_area()</span></code></a></li>
 <li><a class="reference internal" href="#easy_bbox.Bbox.shift"><code class="docutils literal notranslate"><span class="pre">Bbox.shift()</span></code></a></li>
 <li><a class="reference internal" href="#easy_bbox.Bbox.to_albu"><code class="docutils literal notranslate"><span class="pre">Bbox.to_albu()</span></code></a></li>
 <li><a class="reference internal" href="#easy_bbox.Bbox.to_coco"><code class="docutils literal notranslate"><span class="pre">Bbox.to_coco()</span></code></a></li>
@@ -640,6 +641,28 @@ of the bounding box in the format (left, top, right, bottom).</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>scale_factor</strong> (<em>float</em>) – The factor to scale the bounding box by. Width and height will
 be scaled by this factor.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The scaled Bbox instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the scale is strictly negative.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="easy_bbox.Bbox.scale_area">
+<span class="sig-name descname"><span class="pre">scale_area</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.scale_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.scale_area" title="Link to this definition"></a></dt>
+<dd><p>Return a scaled Bbox such that <cite>new area</cite>/<cite>old area</cite> == <cite>scale_factor</cite>.
+The scaling will be from the center.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>scale_factor</strong> (<em>float</em>) – The factor to scale the bounding box by. The area will be scaled by this factor.
+(and width and height will be scaled by the square root of this factor.)</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The scaled Bbox instance.</p>

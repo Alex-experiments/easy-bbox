@@ -452,6 +452,31 @@
         <span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="Bbox.scale_area">
+<a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.scale_area">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">scale_area</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bbox</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a scaled Bbox such that `new area`/`old area` == `scale_factor`.</span>
+<span class="sd">        The scaling will be from the center.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            scale_factor (float): The factor to scale the bounding box by. The area will be scaled by this factor.</span>
+<span class="sd">                (and width and height will be scaled by the square root of this factor.)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Bbox: The scaled Bbox instance.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If the scale is strictly negative.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">scale_factor</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Scaling with a negative value would result in an invalid Bbox.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="o">=</span><span class="n">scale_factor</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="Bbox.expand_uniform">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.expand_uniform">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">expand_uniform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">padding</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bbox</span><span class="p">:</span>
