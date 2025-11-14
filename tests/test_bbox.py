@@ -152,54 +152,60 @@ class TestBbox(unittest.TestCase):
     # region To
     def test_to_tlbr(self):
         """Test the to_tlbr method."""
-        self.assertListEqual(
+        self.assertTupleEqual(
             self.bbox.to_tlbr(),
-            [self.bbox.left, self.bbox.top, self.bbox.right, self.bbox.bottom],
+            (self.bbox.left, self.bbox.top, self.bbox.right, self.bbox.bottom),
         )
 
     def test_to_norm_tlbr(self):
         """Test the to_norm_tlbr method."""
-        self.assertListEqual(self.bbox.to_norm_tlbr(100, 100), [0.1, 0.2, 0.3, 0.4])
+        self.assertTupleEqual(self.bbox.to_norm_tlbr(100, 100), (0.1, 0.2, 0.3, 0.4))
 
     def test_to_tlwh(self):
         """Test the to_tlwh method."""
-        self.assertListEqual(
+        self.assertTupleEqual(
             self.bbox.to_tlwh(),
-            [self.bbox.left, self.bbox.top, self.bbox.width, self.bbox.height],
+            (self.bbox.left, self.bbox.top, self.bbox.width, self.bbox.height),
         )
 
     def test_to_norm_tlwh(self):
         """Test the to_norm_tlwh method."""
-        self.assertListEqual(self.bbox.to_norm_tlwh(100, 100), [0.1, 0.2, 0.3, 0.4])
+        self.assertTupleEqual(self.bbox.to_norm_tlwh(100, 100), (0.1, 0.2, 0.3, 0.4))
 
     def test_to_cwh(self):
         """Test the to_cwh method."""
-        self.assertListEqual(
+        self.assertTupleEqual(
             self.bbox.to_cwh(),
-            [*self.bbox.center, self.bbox.width, self.bbox.height],
+            (*self.bbox.center, self.bbox.width, self.bbox.height),
         )
 
     def test_to_norm_cwh(self):
         """Test the to_norm_cwh method."""
-        self.assertListEqual(self.bbox.to_norm_cwh(100, 100), [0.2, 0.3, 0.2, 0.2])
+        self.assertTupleEqual(self.bbox.to_norm_cwh(100, 100), (0.2, 0.3, 0.2, 0.2))
 
     def test_to_polygon(self):
         """Test the to_polygon method."""
-        self.assertListEqual(
+        self.assertTupleEqual(
             self.bbox.to_polygon(),
-            [
+            (
                 (self.bbox.left, self.bbox.top),
                 (self.bbox.right, self.bbox.top),
                 (self.bbox.right, self.bbox.bottom),
                 (self.bbox.left, self.bbox.bottom),
-            ],
+            ),
+        )
+
+    def test_to_list(self):
+        """Test the to_polygon method."""
+        self.assertListEqual(
+            self.bbox.to_list(),
+            [self.bbox.left, self.bbox.top, self.bbox.right, self.bbox.bottom],
         )
 
     def test_to_alias_methods(self):
         """Test that alias methods are correctly set."""
         self.assertEqual(Bbox.to_pascal_voc, Bbox.to_tlbr)
         self.assertEqual(Bbox.to_xyxy, Bbox.to_tlbr)
-        self.assertEqual(Bbox.to_list, Bbox.to_tlbr)
         self.assertEqual(Bbox.to_albu, Bbox.to_norm_tlbr)
         self.assertEqual(Bbox.to_coco, Bbox.to_tlwh)
         self.assertEqual(Bbox.to_yolo, Bbox.to_norm_cwh)
