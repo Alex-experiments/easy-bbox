@@ -61,7 +61,7 @@ Easy Bbox provides methods for converting between different coordinate formats:
 
 ```py
 # Convert to Top-Left, Bottom-Right format
-tlbr = bbox.to_tlbr() # Same as `.to_pascal_voc()`, `.to_xyxy()`, `.to_list()`
+tlbr = bbox.to_tlbr() # Same as `.to_pascal_voc()`, `.to_xyxy()`
 
 # Convert to Top-Left, Width-Height format
 tlwh = bbox.to_tlwh()   # Same as `.to_coco()`
