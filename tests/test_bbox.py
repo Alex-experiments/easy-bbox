@@ -240,6 +240,21 @@ class TestBbox(unittest.TestCase):
         with self.assertRaises(ValueError):
             bbox.scale(-1)
 
+    def test_scale_area(self):
+        """Test the scale method."""
+        bbox = Bbox(left=100, top=120, right=200, bottom=140)
+        scaled_bbox = bbox.scale_area(4)
+        self.assertEqual(bbox.area * 4, scaled_bbox.area)
+        self.assertEqual(scaled_bbox, Bbox(left=50, top=110, right=250, bottom=150))
+
+        # Test collapse at center
+        cx, cy = bbox.center
+        self.assertEqual(bbox.scale_area(0), Bbox(left=cx, top=cy, right=cx, bottom=cy))
+
+        # Test error with negative value
+        with self.assertRaises(ValueError):
+            bbox.scale_area(-1)
+
     def test_expand_uniform(self):
         """Test the expand_uniform method."""
         self.assertEqual(

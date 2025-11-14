@@ -340,6 +340,28 @@ class Bbox(BaseModel):
             bottom=cy + new_height / 2,
         )
 
+    def scale_area(self, scale_factor: float) -> Bbox:
+        """
+        Return a scaled Bbox such that `new area`/`old area` == `scale_factor`.
+        The scaling will be from the center.
+
+        Args:
+            scale_factor (float): The factor to scale the bounding box by. The area will be scaled by this factor.
+                (and width and height will be scaled by the square root of this factor.)
+
+        Returns:
+            Bbox: The scaled Bbox instance.
+
+        Raises:
+            ValueError: If the scale is strictly negative.
+        """
+        if scale_factor < 0:
+            raise ValueError(
+                "Scaling with a negative value would result in an invalid Bbox."
+            )
+
+        return self.scale(scale_factor=scale_factor**0.5)
+
     def expand_uniform(self, padding: float) -> Bbox:
         """
         Return an expanded Bbox by the specified padding.
