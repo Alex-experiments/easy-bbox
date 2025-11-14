@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "easy-bbox"
-version = "1.0.0"
+version = "1.0.1"
 authors = [
     { name="Alex-experiments" },
 ]
@@ -36,6 +36,9 @@ Documentation = "https://alex-experiments.github.io/easy-bbox"
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["easy_bbox*"]
+
+[tool.setuptools.package-data]
+easy_bbox = ["py.typed"]
 
 [project.optional-dependencies]
 dev = [

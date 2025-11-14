@@ -11,6 +11,7 @@
 Easy Bbox is a Python package designed to simplify bounding box operations. It provides a comprehensive set of tools for manipulating bounding boxes in various coordinate formats, including Pascal VOC, COCO, YOLO and Albumentations. The package supports transformations, geometric operations, and conversions, making it a versatile tool for computer vision tasks.
 
 ## Features
+- **Pydantic model**: Bbox objects are Pydantic models.
 - **Multiple Coordinate Formats**: Supports Pascal VOC, COCO, YOLO and Albumentation formats.
 - **Transformations**: Shift, scale, expand, and pad bounding boxes.
 - **Geometric Operations**: Calculate intersections, unions, and IoU (Intersection over Union).
@@ -110,59 +111,3 @@ dist = bbox1.distance_to_point((5, 10))
 # Perform Non-Maximum Suppression
 selected_bboxes = nms(bboxes, scores, iou_threshold=0.5)
 ```
-
-## Development
-
-Contribution are welcome! Please feel free to submit a Pull Request. Here are the steps to contribute to the project:
-
-### Prerequisites
-
-- Python 3.9+
-
-### Installation
-
-```bash
-# 1. Clone the repo
-git clone https://github.com/Alex-experiments/easy-bbox.git
-cd easy-bbox
-
-# 2. Set-up the venv
-uv venv
-uv pip install -e .[dev]
-```
-
-### Testing
-
-Run tests using pytest:
-
-```bash
-pytest
-```
-
-### Code Quality
-
-This project uses pre-commit hooks for code quality:
-
-```bash
-pre-commit install
-```
-
-This will set up the git hook scripts. Now pre-commit will run automatically on git commit.
-
-### Documentation
-
-Documentation is build automatically when the main branch is updated. You can generate it locally documentation using Sphinx:
-
-```bash
-cd docs
-make html
-```
-
-But you might need to install these packages beforehand:
-```bash
-pip install sphinx sphinx_rtd_theme sphinx-autodoc-typehints
-```
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
