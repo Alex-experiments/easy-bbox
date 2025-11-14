@@ -230,21 +230,39 @@
     <span class="c1"># region To methods</span>
 <div class="viewcode-block" id="Bbox.to_tlbr">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.to_tlbr">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">to_tlbr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_tlbr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the bounding box coordinates in Top-Left, Bottom-Right format.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[float]: The bounding box coordinates [x_min, y_min, x_max, y_max].</span>
-<span class="sd">                x_min and y_min are the coordinates of the top-left corner of the bounding box.</span>
-<span class="sd">                x_max and y_max are the coordinates of the bottom-right corner of the bounding box.</span>
+<span class="sd">            Tuple[float, float, float, float]: The bounding box coordinates (x_min, y_min,</span>
+<span class="sd">            x_max, y_max).</span>
+
+<span class="sd">            x_min and y_min are the coordinates of the top-left corner of the bounding box.</span>
+<span class="sd">            x_max and y_max are the coordinates of the bottom-right corner of the bounding box.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Bbox.to_list">
+<a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.to_list">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the bounding box coordinates in Top-Left, Bottom-Right format.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[float]: The bounding box coordinates [x_min, y_min,</span>
+<span class="sd">            x_max, y_max].</span>
+
+<span class="sd">            x_min and y_min are the coordinates of the top-left corner of the bounding box.</span>
+<span class="sd">            x_max and y_max are the coordinates of the bottom-right corner of the bounding box.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="Bbox.to_norm_tlbr">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.to_norm_tlbr">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">to_norm_tlbr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_w</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">img_h</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_norm_tlbr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_w</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">img_h</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the bounding box coordinates in Top-Left, Bottom-Right format, normalized</span>
 <span class="sd">        based on the image dimensions.</span>
@@ -254,35 +272,40 @@
 <span class="sd">            img_h (int): The image height in pixels.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[float]: The bounding box coordinates [x_min, y_min, x_max, y_max].</span>
-<span class="sd">                x_min and y_min are the coordinates of the top-left corner of the bounding box.</span>
-<span class="sd">                x_max and y_max are the coordinates of the bottom-right corner of the bounding box.</span>
-<span class="sd">                All the returned values are **NORMALIZED** based on the image dimensions.</span>
+<span class="sd">            Tuple[float, float, float, float]: The bounding box coordinates (x_min, y_min,</span>
+<span class="sd">            x_max, y_max).</span>
+
+<span class="sd">            x_min and y_min are the coordinates of the top-left corner of the bounding box.</span>
+<span class="sd">            x_max and y_max are the coordinates of the bottom-right corner of the bounding box.</span>
+
+<span class="sd">            All the returned values are **NORMALIZED** based on the image dimensions.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span>
+        <span class="k">return</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">/</span> <span class="n">img_w</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">/</span> <span class="n">img_h</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">/</span> <span class="n">img_w</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span> <span class="o">/</span> <span class="n">img_h</span><span class="p">,</span>
-        <span class="p">]</span></div>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Bbox.to_tlwh">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.to_tlwh">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">to_tlwh</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_tlwh</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the bounding box coordinates in Top-Left, Width-Height format.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[float]: The bounding box coordinates [x_min, y_min, width, height].</span>
-<span class="sd">                x_min and y_min are coordinates of the top-left corner of the bounding box.</span>
+<span class="sd">            Tuple[float, float, float, float]: The bounding box coordinates (x_min, y_min,</span>
+<span class="sd">            width, height).</span>
+
+<span class="sd">            x_min and y_min are coordinates of the top-left corner of the bounding box.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Bbox.to_norm_tlwh">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.to_norm_tlwh">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">to_norm_tlwh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_w</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">img_h</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_norm_tlwh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_w</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">img_h</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the bounding box coordinates in Top-Left, Width-Height format, normalized</span>
 <span class="sd">        based on the image dimensions.</span>
@@ -292,34 +315,37 @@
 <span class="sd">            img_h (int): The image height in pixels.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[float]: The bounding box coordinates [x_min, y_min, width, height].</span>
-<span class="sd">                x_min and y_min are the coordinates of the top-left</span>
-<span class="sd">                corner of the bounding box.</span>
-<span class="sd">                All the returned values are **NORMALIZED** based on the image dimensions.</span>
+<span class="sd">            Tuple[float, float, float, float]: The bounding box coordinates [x_min, y_min,</span>
+<span class="sd">            width, height].</span>
+
+<span class="sd">            x_min and y_min are the coordinates of the top-left corner of the bounding box.</span>
+
+<span class="sd">            All the returned values are **NORMALIZED** based on the image dimensions.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span>
+        <span class="k">return</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">/</span> <span class="n">img_w</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">/</span> <span class="n">img_h</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">/</span> <span class="n">img_w</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span> <span class="o">/</span> <span class="n">img_h</span><span class="p">,</span>
-        <span class="p">]</span></div>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Bbox.to_cwh">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.to_cwh">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">to_cwh</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_cwh</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the bounding box coordinates in Center, Width-Height format.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[float]: The bounding box coordinates [x_center, y_center, width, height].</span>
+<span class="sd">            Tuple[float, float, float, float]: The bounding box coordinates (x_center, y_center,</span>
+<span class="sd">            width, height).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Bbox.to_norm_cwh">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.to_norm_cwh">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">to_norm_cwh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_w</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">img_h</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_norm_cwh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_w</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">img_h</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the bounding box coordinates in Center, Width-Height format, normalized</span>
 <span class="sd">        based on the image dimensions.</span>
@@ -329,34 +355,40 @@
 <span class="sd">            img_h (int): The image height in pixels.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[float]: The NORMALIZED bounding box coordinates [x_center, y_center, width,</span>
-<span class="sd">            height].</span>
+<span class="sd">            Tuple[float, float, float, float]: The NORMALIZED bounding box</span>
+<span class="sd">            coordinates (x_center, y_center, width, height).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">cx</span> <span class="o">/</span> <span class="n">img_w</span><span class="p">,</span> <span class="n">cy</span> <span class="o">/</span> <span class="n">img_h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="n">img_w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="n">img_h</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">(</span><span class="n">cx</span> <span class="o">/</span> <span class="n">img_w</span><span class="p">,</span> <span class="n">cy</span> <span class="o">/</span> <span class="n">img_h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="n">img_w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="n">img_h</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Bbox.to_polygon">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.to_polygon">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">to_polygon</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_polygon</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span>
+        <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+    <span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the bounding box corners as points.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[Tuple[float, float]]: The corners coordinates in (x, y) format.</span>
+<span class="sd">            The corners coordinates in (x, y) format.</span>
 <span class="sd">            The order is `top_left &gt; top_right &gt; bottom_right &gt; bottom_left`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span>
+        <span class="k">return</span> <span class="p">(</span>
             <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="p">),</span>
             <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="p">),</span>
             <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span><span class="p">),</span>
             <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span><span class="p">),</span>
-        <span class="p">]</span></div>
+        <span class="p">)</span></div>
 
 
     <span class="n">to_pascal_voc</span> <span class="o">=</span> <span class="n">to_tlbr</span>
     <span class="n">to_xyxy</span> <span class="o">=</span> <span class="n">to_tlbr</span>
-    <span class="n">to_list</span> <span class="o">=</span> <span class="n">to_tlbr</span>
     <span class="n">to_albu</span> <span class="o">=</span> <span class="n">to_norm_tlbr</span>
     <span class="n">to_coco</span> <span class="o">=</span> <span class="n">to_tlwh</span>
     <span class="n">to_yolo</span> <span class="o">=</span> <span class="n">to_norm_cwh</span>
@@ -549,9 +581,9 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a clipped Bbox to the image dimensions.</span>
 
-<span class="sd">        Remember that the bottom and right edges are inclusive, so</span>
-<span class="sd">        `Bbox(left=-10, top=-20, right=100, bottom=120).clipt_to_img(img_w=32, img_h=64)`</span>
-<span class="sd">        returns `Bbox(left=0, top=0, right=31, bottom=63)`</span>
+<span class="sd">        Remember that the bottom and right edges are considered excluded from the bbox, so</span>
+<span class="sd">        `Bbox(left=-10, top=-20, right=100, bottom=120).clip_to_img(img_w=32, img_h=64)`</span>
+<span class="sd">        returns `Bbox(left=0, top=0, right=32, bottom=64)`</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            img_w (int): The image width in pixels.</span>

@@ -228,9 +228,9 @@ slicing and PIL image cropping features (in case of Int Bboxes).</p>
 <dt class="sig sig-object py" id="easy_bbox.Bbox.clip_to_img">
 <span class="sig-name descname"><span class="pre">clip_to_img</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img_w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_h</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.clip_to_img"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.clip_to_img" title="Link to this definition"></a></dt>
 <dd><p>Returns a clipped Bbox to the image dimensions.</p>
-<p>Remember that the bottom and right edges are inclusive, so
-<cite>Bbox(left=-10, top=-20, right=100, bottom=120).clipt_to_img(img_w=32, img_h=64)</cite>
-returns <cite>Bbox(left=0, top=0, right=31, bottom=63)</cite></p>
+<p>Remember that the bottom and right edges are considered excluded from the bbox, so
+<cite>Bbox(left=-10, top=-20, right=100, bottom=120).clip_to_img(img_w=32, img_h=64)</cite>
+returns <cite>Bbox(left=0, top=0, right=32, bottom=64)</cite></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -688,16 +688,15 @@ based on the image dimensions.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>The bounding box coordinates [x_min, y_min, x_max, y_max].</dt><dd><p>x_min and y_min are the coordinates of the top-left corner of the bounding box.
-x_max and y_max are the coordinates of the bottom-right corner of the bounding box.
-All the returned values are <strong>NORMALIZED</strong> based on the image dimensions.</p>
-</dd>
-</dl>
+<dd class="field-even"><p><p>The bounding box coordinates (x_min, y_min,
+x_max, y_max).</p>
+<p>x_min and y_min are the coordinates of the top-left corner of the bounding box.
+x_max and y_max are the coordinates of the bottom-right corner of the bounding box.</p>
+<p>All the returned values are <strong>NORMALIZED</strong> based on the image dimensions.</p>
 </p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[float]</p>
+<dd class="field-odd"><p>Tuple[float, float, float, float]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -708,14 +707,13 @@ All the returned values are <strong>NORMALIZED</strong> based on the image dimen
 <dd><p>Returns the bounding box coordinates in Top-Left, Width-Height format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><dl class="simple">
-<dt>The bounding box coordinates [x_min, y_min, width, height].</dt><dd><p>x_min and y_min are coordinates of the top-left corner of the bounding box.</p>
-</dd>
-</dl>
+<dd class="field-odd"><p><p>The bounding box coordinates (x_min, y_min,
+width, height).</p>
+<p>x_min and y_min are coordinates of the top-left corner of the bounding box.</p>
 </p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>List[float]</p>
+<dd class="field-even"><p>Tuple[float, float, float, float]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -726,25 +724,25 @@ All the returned values are <strong>NORMALIZED</strong> based on the image dimen
 <dd><p>Returns the bounding box coordinates in Center, Width-Height format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The bounding box coordinates [x_center, y_center, width, height].</p>
+<dd class="field-odd"><p>The bounding box coordinates (x_center, y_center,
+width, height).</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>List[float]</p>
+<dd class="field-even"><p>Tuple[float, float, float, float]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="easy_bbox.Bbox.to_list">
-<span class="sig-name descname"><span class="pre">to_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#easy_bbox.Bbox.to_list" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">to_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.to_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.to_list" title="Link to this definition"></a></dt>
 <dd><p>Returns the bounding box coordinates in Top-Left, Bottom-Right format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><dl class="simple">
-<dt>The bounding box coordinates [x_min, y_min, x_max, y_max].</dt><dd><p>x_min and y_min are the coordinates of the top-left corner of the bounding box.
+<dd class="field-odd"><p><p>The bounding box coordinates [x_min, y_min,
+x_max, y_max].</p>
+<p>x_min and y_min are the coordinates of the top-left corner of the bounding box.
 x_max and y_max are the coordinates of the bottom-right corner of the bounding box.</p>
-</dd>
-</dl>
 </p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -766,11 +764,11 @@ based on the image dimensions.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The NORMALIZED bounding box coordinates [x_center, y_center, width,
-height].</p>
+<dd class="field-even"><p>The NORMALIZED bounding box
+coordinates (x_center, y_center, width, height).</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[float]</p>
+<dd class="field-odd"><p>Tuple[float, float, float, float]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -788,16 +786,15 @@ based on the image dimensions.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>The bounding box coordinates [x_min, y_min, x_max, y_max].</dt><dd><p>x_min and y_min are the coordinates of the top-left corner of the bounding box.
-x_max and y_max are the coordinates of the bottom-right corner of the bounding box.
-All the returned values are <strong>NORMALIZED</strong> based on the image dimensions.</p>
-</dd>
-</dl>
+<dd class="field-even"><p><p>The bounding box coordinates (x_min, y_min,
+x_max, y_max).</p>
+<p>x_min and y_min are the coordinates of the top-left corner of the bounding box.
+x_max and y_max are the coordinates of the bottom-right corner of the bounding box.</p>
+<p>All the returned values are <strong>NORMALIZED</strong> based on the image dimensions.</p>
 </p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[float]</p>
+<dd class="field-odd"><p>Tuple[float, float, float, float]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -815,16 +812,14 @@ based on the image dimensions.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>The bounding box coordinates [x_min, y_min, width, height].</dt><dd><p>x_min and y_min are the coordinates of the top-left
-corner of the bounding box.
-All the returned values are <strong>NORMALIZED</strong> based on the image dimensions.</p>
-</dd>
-</dl>
+<dd class="field-even"><p><p>The bounding box coordinates [x_min, y_min,
+width, height].</p>
+<p>x_min and y_min are the coordinates of the top-left corner of the bounding box.</p>
+<p>All the returned values are <strong>NORMALIZED</strong> based on the image dimensions.</p>
 </p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[float]</p>
+<dd class="field-odd"><p>Tuple[float, float, float, float]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -835,15 +830,14 @@ All the returned values are <strong>NORMALIZED</strong> based on the image dimen
 <dd><p>Returns the bounding box coordinates in Top-Left, Bottom-Right format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><dl class="simple">
-<dt>The bounding box coordinates [x_min, y_min, x_max, y_max].</dt><dd><p>x_min and y_min are the coordinates of the top-left corner of the bounding box.
+<dd class="field-odd"><p><p>The bounding box coordinates (x_min, y_min,
+x_max, y_max).</p>
+<p>x_min and y_min are the coordinates of the top-left corner of the bounding box.
 x_max and y_max are the coordinates of the bottom-right corner of the bounding box.</p>
-</dd>
-</dl>
 </p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>List[float]</p>
+<dd class="field-even"><p>Tuple[float, float, float, float]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -853,12 +847,12 @@ x_max and y_max are the coordinates of the bottom-right corner of the bounding b
 <span class="sig-name descname"><span class="pre">to_polygon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/easy_bbox/bbox.html#Bbox.to_polygon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#easy_bbox.Bbox.to_polygon" title="Link to this definition"></a></dt>
 <dd><p>Returns the bounding box corners as points.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The corners coordinates in (x, y) format.
-The order is <cite>top_left &gt; top_right &gt; bottom_right &gt; bottom_left</cite></p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]]</span></p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>List[Tuple[float, float]]</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The corners coordinates in (x, y) format.
+The order is <cite>top_left &gt; top_right &gt; bottom_right &gt; bottom_left</cite></p>
 </dd>
 </dl>
 </dd></dl>
@@ -869,15 +863,14 @@ The order is <cite>top_left &gt; top_right &gt; bottom_right &gt; bottom_left</c
 <dd><p>Returns the bounding box coordinates in Top-Left, Bottom-Right format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><dl class="simple">
-<dt>The bounding box coordinates [x_min, y_min, x_max, y_max].</dt><dd><p>x_min and y_min are the coordinates of the top-left corner of the bounding box.
+<dd class="field-odd"><p><p>The bounding box coordinates (x_min, y_min,
+x_max, y_max).</p>
+<p>x_min and y_min are the coordinates of the top-left corner of the bounding box.
 x_max and y_max are the coordinates of the bottom-right corner of the bounding box.</p>
-</dd>
-</dl>
 </p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>List[float]</p>
+<dd class="field-even"><p>Tuple[float, float, float, float]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -888,14 +881,13 @@ x_max and y_max are the coordinates of the bottom-right corner of the bounding b
 <dd><p>Returns the bounding box coordinates in Top-Left, Width-Height format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><dl class="simple">
-<dt>The bounding box coordinates [x_min, y_min, width, height].</dt><dd><p>x_min and y_min are coordinates of the top-left corner of the bounding box.</p>
-</dd>
-</dl>
+<dd class="field-odd"><p><p>The bounding box coordinates (x_min, y_min,
+width, height).</p>
+<p>x_min and y_min are coordinates of the top-left corner of the bounding box.</p>
 </p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>List[float]</p>
+<dd class="field-even"><p>Tuple[float, float, float, float]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -906,15 +898,14 @@ x_max and y_max are the coordinates of the bottom-right corner of the bounding b
 <dd><p>Returns the bounding box coordinates in Top-Left, Bottom-Right format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><dl class="simple">
-<dt>The bounding box coordinates [x_min, y_min, x_max, y_max].</dt><dd><p>x_min and y_min are the coordinates of the top-left corner of the bounding box.
+<dd class="field-odd"><p><p>The bounding box coordinates (x_min, y_min,
+x_max, y_max).</p>
+<p>x_min and y_min are the coordinates of the top-left corner of the bounding box.
 x_max and y_max are the coordinates of the bottom-right corner of the bounding box.</p>
-</dd>
-</dl>
 </p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>List[float]</p>
+<dd class="field-even"><p>Tuple[float, float, float, float]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -932,11 +923,11 @@ based on the image dimensions.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The NORMALIZED bounding box coordinates [x_center, y_center, width,
-height].</p>
+<dd class="field-even"><p>The NORMALIZED bounding box
+coordinates (x_center, y_center, width, height).</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[float]</p>
+<dd class="field-odd"><p>Tuple[float, float, float, float]</p>
 </dd>
 </dl>
 </dd></dl>
