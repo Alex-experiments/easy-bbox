@@ -1,7 +1,7 @@
 # Easy Bbox
 
 <p align="center">
-    <a href="https://pypi.org/project/easy-bbox"><img alt="Package version" src="https://badgen.net/pypi/v/easy-bbox/"></a>
+    <a href="https://pypi.org/project/easy-bbox"><img alt="Package version" src="https://img.shields.io/pypi/v/easy-bbox.svg"></a>
     <a href="https://github.com/Alex-experiments/easy-bbox/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
     <a href="https://github.com/Alex-experiments/easy-bbox/actions"><img alt="Coverage" src="https://Alex-experiments.github.io/easy-bbox/badges/coverage.svg"></a>
     <a href="https://alex-experiments.github.io/easy-bbox"><img alt="Documentation" src="https://img.shields.io/badge/Documentation-gh--pages-blue"></a>
