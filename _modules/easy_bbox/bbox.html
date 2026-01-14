@@ -7,14 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>easy_bbox.bbox &mdash; Easy-Bbox 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=8d563738"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -76,10 +76,24 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">model_validator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">__version__</span> <span class="k">as</span> <span class="n">pydantic_version</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Self</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">model_validator</span><span class="p">,</span> <span class="n">__version__</span> <span class="k">as</span> <span class="n">pydantic_version</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DistanceMetric</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="s2">&quot;L1&quot;</span>  <span class="c1"># Manhattan distance</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="s2">&quot;L2&quot;</span>  <span class="c1"># Euclidian distance</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RoundingMethod</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">ROUND</span> <span class="o">=</span> <span class="s2">&quot;round&quot;</span>
+    <span class="n">CEIL</span> <span class="o">=</span> <span class="s2">&quot;ceil&quot;</span>
+    <span class="n">FLOOR</span> <span class="o">=</span> <span class="s2">&quot;floor&quot;</span>
 
 
 <div class="viewcode-block" id="Bbox">
@@ -388,6 +402,44 @@
         <span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="Bbox.to_int_tuple">
+<a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.to_int_tuple">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_int_tuple</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">rounding_method</span><span class="p">:</span> <span class="n">RoundingMethod</span> <span class="o">=</span> <span class="n">RoundingMethod</span><span class="o">.</span><span class="n">ROUND</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the bounding box coordinates in Top-Left, Bottom-Right format, with values</span>
+<span class="sd">        rounded to int.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            rounding_method (RoundingMethod): The rounding method to use. Defaults to</span>
+<span class="sd">                `RoundingMethod.ROUND`.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Tuple[int, int, int, int]: The coordinates as integers.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If a wrong rounding method is provided.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rounding_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">int</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">rounding_method</span> <span class="o">==</span> <span class="n">RoundingMethod</span><span class="o">.</span><span class="n">CEIL</span><span class="p">:</span>
+            <span class="n">rounding_func</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span>
+        <span class="k">elif</span> <span class="n">rounding_method</span> <span class="o">==</span> <span class="n">RoundingMethod</span><span class="o">.</span><span class="n">FLOOR</span><span class="p">:</span>
+            <span class="n">rounding_func</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span>
+        <span class="k">elif</span> <span class="n">rounding_method</span> <span class="o">==</span> <span class="n">RoundingMethod</span><span class="o">.</span><span class="n">ROUND</span><span class="p">:</span>
+            <span class="n">rounding_func</span> <span class="o">=</span> <span class="nb">round</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">rounding_method</span><span class="si">}</span><span class="s2"> is not a valid rounding method.&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">rounding_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">),</span>
+            <span class="n">rounding_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="p">),</span>
+            <span class="n">rounding_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">),</span>
+            <span class="n">rounding_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bottom</span><span class="p">),</span>
+        <span class="p">)</span></div>
+
+
     <span class="n">to_pascal_voc</span> <span class="o">=</span> <span class="n">to_tlbr</span>
     <span class="n">to_xyxy</span> <span class="o">=</span> <span class="n">to_tlbr</span>
     <span class="n">to_albu</span> <span class="o">=</span> <span class="n">to_norm_tlbr</span>
@@ -628,6 +680,8 @@
 
     <span class="c1"># endregion</span>
 
+    <span class="c1"># region Utility Functions</span>
+
 <div class="viewcode-block" id="Bbox.overlaps">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.overlaps">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">overlaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Bbox</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -661,6 +715,46 @@
 <span class="sd">            bool: True if the point is inside the bounding box, False otherwise.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span></div>
+
+
+<div class="viewcode-block" id="Bbox.contains">
+<a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.contains">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Bbox</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if the other Bbox is contained by this one.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            other (Bbox): The other bounding box.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if this bounding box contains the other one.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">other</span><span class="o">.</span><span class="n">left</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">&gt;=</span> <span class="n">other</span><span class="o">.</span><span class="n">right</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">&lt;=</span> <span class="n">other</span><span class="o">.</span><span class="n">top</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span> <span class="o">&gt;=</span> <span class="n">other</span><span class="o">.</span><span class="n">bottom</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Bbox.is_inside">
+<a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.is_inside">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_inside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Bbox</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if this Bbox is contained by the other one.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            other (Bbox): The other bounding box.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if this bounding box is contained by the other one.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">&gt;=</span> <span class="n">other</span><span class="o">.</span><span class="n">left</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">&lt;=</span> <span class="n">other</span><span class="o">.</span><span class="n">right</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">&gt;=</span> <span class="n">other</span><span class="o">.</span><span class="n">top</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span> <span class="o">&lt;=</span> <span class="n">other</span><span class="o">.</span><span class="n">bottom</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Bbox.union">
@@ -734,21 +828,69 @@
 
 <div class="viewcode-block" id="Bbox.distance_to_point">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.distance_to_point">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">distance_to_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">distance_to_point</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">dist</span><span class="p">:</span> <span class="n">DistanceMetric</span> <span class="o">=</span> <span class="n">DistanceMetric</span><span class="o">.</span><span class="n">L2</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates the distance from the bounding box to a point.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            x (float): The x-coordinate of the point.</span>
 <span class="sd">            y (float): The y-coordinate of the point.</span>
+<span class="sd">            dist (DistanceMetric): The distance metric to use. Defaults to ``DistanceMetric.L2``.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            float: The distance from the bounding box to the point.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If a wrong distance metric is provided.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">dx</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">-</span> <span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
         <span class="n">dy</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">-</span> <span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span></div>
 
+        <span class="k">if</span> <span class="n">dist</span> <span class="o">==</span> <span class="n">DistanceMetric</span><span class="o">.</span><span class="n">L1</span><span class="p">:</span>
+            <span class="c1"># Calculate L1 distance (Manhattan distance)</span>
+            <span class="k">return</span> <span class="n">dx</span> <span class="o">+</span> <span class="n">dy</span>
+        <span class="k">if</span> <span class="n">dist</span> <span class="o">==</span> <span class="n">DistanceMetric</span><span class="o">.</span><span class="n">L2</span><span class="p">:</span>
+            <span class="c1"># Calculate L2 distance (Euclidean distance)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dist</span><span class="si">}</span><span class="s2"> is not a valid distance function.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Bbox.distance_to_bbox">
+<a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.distance_to_bbox">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">distance_to_bbox</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Bbox</span><span class="p">,</span> <span class="n">dist</span><span class="p">:</span> <span class="n">DistanceMetric</span> <span class="o">=</span> <span class="n">DistanceMetric</span><span class="o">.</span><span class="n">L2</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the distance between the edges of this Bbox and another Bbox.</span>
+<span class="sd">        Distance is zero if the boxes overlap or touch.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            other (Bbox): The other bounding box.</span>
+<span class="sd">            dist (DistanceMetric): The distance metric to use. Defaults to ``DistanceMetric.L2``.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The distance between the two bounding boxes.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If a wrong distance metric is provided.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dx</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">left</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">bottom</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">top</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">dist</span> <span class="o">==</span> <span class="n">DistanceMetric</span><span class="o">.</span><span class="n">L1</span><span class="p">:</span>
+            <span class="c1"># Calculate L1 distance (Manhattan distance)</span>
+            <span class="k">return</span> <span class="n">dx</span> <span class="o">+</span> <span class="n">dy</span>
+        <span class="k">if</span> <span class="n">dist</span> <span class="o">==</span> <span class="n">DistanceMetric</span><span class="o">.</span><span class="n">L2</span><span class="p">:</span>
+            <span class="c1"># Calculate L2 distance (Euclidean distance)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dist</span><span class="si">}</span><span class="s2"> is not a valid distance function.&quot;</span><span class="p">)</span></div>
+
+
+    <span class="c1"># endregion</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">width</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
