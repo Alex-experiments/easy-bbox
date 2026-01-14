@@ -3,6 +3,7 @@
 import unittest
 
 from easy_bbox import Bbox, nms
+from easy_bbox.utils import bbox_intersection, bbox_union
 
 
 class TestNMS(unittest.TestCase):
@@ -59,6 +60,38 @@ class TestNMS(unittest.TestCase):
         scores = [0.9, 0.8]
         with self.assertRaises(ValueError):
             nms(bboxes, scores)
+
+    def test_bbox_union(self):
+        """Test the bbox_union function."""
+        bboxes = [
+            Bbox(left=10, top=10, right=30, bottom=30),
+            Bbox(left=20, top=20, right=40, bottom=40),
+            Bbox(left=5, top=5, right=35, bottom=35),
+        ]
+        self.assertEqual(bbox_union(bboxes), Bbox(left=5, top=5, right=40, bottom=40))
+
+        with self.assertRaises(ValueError):
+            bbox_union([])
+
+    def test_bbox_intersection(self):
+        """Test the bbox_intersection function."""
+        bboxes = [
+            Bbox(left=10, top=10, right=30, bottom=30),
+            Bbox(left=20, top=20, right=40, bottom=40),
+            Bbox(left=5, top=5, right=35, bottom=35),
+        ]
+        self.assertEqual(
+            bbox_intersection(bboxes), Bbox(left=20, top=20, right=30, bottom=30)
+        )
+
+        bboxes = [
+            Bbox(left=10, top=10, right=30, bottom=30),
+            Bbox(left=40, top=40, right=60, bottom=60),
+        ]
+        self.assertIsNone(bbox_intersection(bboxes))
+
+        with self.assertRaises(ValueError):
+            bbox_intersection([])
 
 
 if __name__ == "__main__":

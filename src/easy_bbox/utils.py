@@ -4,12 +4,9 @@ utils.py
 Contains utility functions for bounding box operations.
 """
 
-from __future__ import annotations
+from typing import List, Optional, Sequence, Tuple
 
-from typing import TYPE_CHECKING, List, Tuple
-
-if TYPE_CHECKING:
-    from easy_bbox.bbox import Bbox
+from easy_bbox.bbox import Bbox
 
 
 def nms(
@@ -56,3 +53,53 @@ def nms(
 
     # Return the selected bounding boxes and their scores
     return [(bboxes[i], scores[i]) for i in selected_indices]
+
+
+def bbox_union(bboxes: Sequence[Bbox]) -> Bbox:
+    """Calculate the union of a list of bounding boxes.
+
+    Args:
+        bboxes (Sequence[Bbox]): A sequence of bounding boxes.
+
+    Returns:
+        Bbox: The bounding box that represents the union of all input bounding boxes.
+
+    Raises:
+        ValueError: If the input list of bounding boxes is empty.
+    """
+    if not bboxes:
+        raise ValueError("A non empty Bbox list is needed.")
+
+    return Bbox(
+        left=min(b.left for b in bboxes),
+        top=min(b.top for b in bboxes),
+        right=max(b.right for b in bboxes),
+        bottom=max(b.bottom for b in bboxes),
+    )
+
+
+def bbox_intersection(bboxes: Sequence[Bbox]) -> Optional[Bbox]:
+    """Calculate the intersection of a list of bounding boxes.
+
+    Args:
+        bboxes (Sequence[Bbox]): A sequence of bounding boxes.
+
+    Returns:
+        Optional[Bbox]: The bounding box that represents the intersection of all input bounding
+            boxes. If the resulting bounding box is not valid, returns None.
+
+    Raises:
+        ValueError: If the input list of bounding boxes is empty.
+    """
+    if not bboxes:
+        raise ValueError("A non empty Bbox list is needed.")
+
+    left = max(b.left for b in bboxes)
+    top = max(b.top for b in bboxes)
+    right = min(b.right for b in bboxes)
+    bottom = min(b.bottom for b in bboxes)
+
+    if left > right or top > bottom:
+        return None
+
+    return Bbox(left=left, top=top, right=right, bottom=bottom)
