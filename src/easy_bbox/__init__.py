@@ -10,12 +10,14 @@ Classes:
 
 Functions:
     nms: Perform Non-Maximum Suppression on a list of bounding boxes.
+    bbox_intersection: Returns the intersection of a sequence of Bboxes.
+    bbox_union: Returns the union of a sequence of Bboxes.
 """
 
 from importlib.metadata import version as _version
 
 from .bbox import Bbox
-from .utils import nms
+from .utils import bbox_intersection, bbox_union, nms
 
 __version__ = _version("easy-bbox")
-__all__ = ["Bbox", "nms"]
+__all__ = ["Bbox", "nms", "bbox_union", "bbox_intersection"]
