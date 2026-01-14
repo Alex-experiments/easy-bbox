@@ -8,10 +8,24 @@ transformations, geometric operations, and conversions.
 
 from __future__ import annotations
 
-from typing import List, Optional, Sequence, Tuple
+import math
+from enum import Enum
+from typing import Callable, List, Optional, Sequence, Tuple
+
+from pydantic import BaseModel, model_validator
+from pydantic import __version__ as pydantic_version
 from typing_extensions import Self
 
-from pydantic import BaseModel, model_validator, __version__ as pydantic_version
+
+class DistanceMetric(Enum):
+    L1 = "L1"  # Manhattan distance
+    L2 = "L2"  # Euclidian distance
+
+
+class RoundingMethod(Enum):
+    ROUND = "round"
+    CEIL = "ceil"
+    FLOOR = "floor"
 
 
 class Bbox(BaseModel):
@@ -282,6 +296,41 @@ class Bbox(BaseModel):
             (self.left, self.bottom),
         )
 
+    def to_int_tuple(
+        self, rounding_method: RoundingMethod = RoundingMethod.ROUND
+    ) -> Tuple[int, int, int, int]:
+        """
+        Returns the bounding box coordinates in Top-Left, Bottom-Right format, with values
+        rounded to int.
+
+        Args:
+            rounding_method (RoundingMethod): The rounding method to use. Defaults to
+                `RoundingMethod.ROUND`.
+
+        Returns:
+            Tuple[int, int, int, int]: The coordinates as integers.
+
+        Raises:
+            ValueError: If a wrong rounding method is provided.
+        """
+        rounding_func: Callable[[float], int]
+
+        if rounding_method == RoundingMethod.CEIL:
+            rounding_func = math.ceil
+        elif rounding_method == RoundingMethod.FLOOR:
+            rounding_func = math.floor
+        elif rounding_method == RoundingMethod.ROUND:
+            rounding_func = round
+        else:
+            raise ValueError(f"{rounding_method} is not a valid rounding method.")
+
+        return (
+            rounding_func(self.left),
+            rounding_func(self.top),
+            rounding_func(self.right),
+            rounding_func(self.bottom),
+        )
+
     to_pascal_voc = to_tlbr
     to_xyxy = to_tlbr
     to_albu = to_norm_tlbr
@@ -498,6 +547,8 @@ class Bbox(BaseModel):
 
     # endregion
 
+    # region Utility Functions
+
     def overlaps(self, other: Bbox) -> bool:
         """
         Checks if the current bounding box overlaps with another bounding box.
@@ -526,6 +577,40 @@ class Bbox(BaseModel):
             bool: True if the point is inside the bounding box, False otherwise.
         """
         return self.left <= x <= self.right and self.top <= y <= self.bottom
+
+    def contains(self, other: Bbox) -> bool:
+        """
+        Checks if the other Bbox is contained by this one.
+
+        Args:
+            other (Bbox): The other bounding box.
+
+        Returns:
+            bool: True if this bounding box contains the other one.
+        """
+        return (
+            self.left <= other.left
+            and self.right >= other.right
+            and self.top <= other.top
+            and self.bottom >= other.bottom
+        )
+
+    def is_inside(self, other: Bbox) -> bool:
+        """
+        Checks if this Bbox is contained by the other one.
+
+        Args:
+            other (Bbox): The other bounding box.
+
+        Returns:
+            bool: True if this bounding box is contained by the other one.
+        """
+        return (
+            self.left >= other.left
+            and self.right <= other.right
+            and self.top >= other.top
+            and self.bottom <= other.bottom
+        )
 
     def union(self, other: Bbox) -> Bbox:
         """
@@ -587,20 +672,65 @@ class Bbox(BaseModel):
         # Calculate the IoU
         return intersection_area / union_area
 
-    def distance_to_point(self, x: float, y: float) -> float:
+    def distance_to_point(
+        self, x: float, y: float, dist: DistanceMetric = DistanceMetric.L2
+    ) -> float:
         """
         Calculates the distance from the bounding box to a point.
 
         Args:
             x (float): The x-coordinate of the point.
             y (float): The y-coordinate of the point.
+            dist (DistanceMetric): The distance metric to use. Defaults to ``DistanceMetric.L2``.
 
         Returns:
             float: The distance from the bounding box to the point.
+
+        Raises:
+            ValueError: If a wrong distance metric is provided.
         """
         dx = max(self.left - x, 0, x - self.right)
         dy = max(self.top - y, 0, y - self.bottom)
-        return (dx**2 + dy**2) ** 0.5
+
+        if dist == DistanceMetric.L1:
+            # Calculate L1 distance (Manhattan distance)
+            return dx + dy
+        if dist == DistanceMetric.L2:
+            # Calculate L2 distance (Euclidean distance)
+            return (dx**2 + dy**2) ** 0.5
+
+        raise ValueError(f"{dist} is not a valid distance function.")
+
+    def distance_to_bbox(
+        self, other: Bbox, dist: DistanceMetric = DistanceMetric.L2
+    ) -> float:
+        """
+        Calculates the distance between the edges of this Bbox and another Bbox.
+        Distance is zero if the boxes overlap or touch.
+
+        Args:
+            other (Bbox): The other bounding box.
+            dist (DistanceMetric): The distance metric to use. Defaults to ``DistanceMetric.L2``.
+
+        Returns:
+            float: The distance between the two bounding boxes.
+
+        Raises:
+            ValueError: If a wrong distance metric is provided.
+        """
+        dx = max(0, self.left - other.right, other.left - self.right)
+        dy = max(0, self.top - other.bottom, other.top - self.bottom)
+
+        if dist == DistanceMetric.L1:
+            # Calculate L1 distance (Manhattan distance)
+            return dx + dy
+        if dist == DistanceMetric.L2:
+            # Calculate L2 distance (Euclidean distance)
+            return (dx**2 + dy**2) ** 0.5
+
+        raise ValueError(f"{dist} is not a valid distance function.")
+
+    # endregion
 
     @property
     def width(self) -> float:

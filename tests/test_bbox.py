@@ -1,6 +1,7 @@
 import unittest
 
 from easy_bbox import Bbox
+from easy_bbox.bbox import DistanceMetric, RoundingMethod
 
 
 class TestBbox(unittest.TestCase):
@@ -46,7 +47,7 @@ class TestBbox(unittest.TestCase):
         self.assertEqual(Bbox(left=-5, top=0, right=5, bottom=5).aspect_ratio, 2)
         self.assertEqual(Bbox(left=0, top=-5, right=5, bottom=5).aspect_ratio, 0.5)
 
-    # end region
+    # endregion
 
     # region Dunder methods
 
@@ -58,7 +59,7 @@ class TestBbox(unittest.TestCase):
         """Test Bbox intersection with and."""
         self.assertEqual(self.bbox.__and__, self.bbox.intersection)
 
-    # end region
+    # endregion
 
     # region From
     def test_from_tlbr(self):
@@ -210,7 +211,14 @@ class TestBbox(unittest.TestCase):
         self.assertEqual(Bbox.to_coco, Bbox.to_tlwh)
         self.assertEqual(Bbox.to_yolo, Bbox.to_norm_cwh)
 
-    # end region
+    def test_to_int_tuple(self):
+        """Test the to_int_tuple method."""
+        bbox = Bbox(left=10.2, top=20.8, right=30.5, bottom=31.5)
+        self.assertTupleEqual(bbox.to_int_tuple(), (10, 21, 30, 32))
+        self.assertTupleEqual(bbox.to_int_tuple(RoundingMethod.FLOOR), (10, 20, 30, 31))
+        self.assertTupleEqual(bbox.to_int_tuple(RoundingMethod.CEIL), (11, 21, 31, 32))
+
+    # endregion
 
     # region Transformations
     def test_shift(self):
@@ -331,6 +339,9 @@ class TestBbox(unittest.TestCase):
             self.bbox.clip_to_img(15, 25), Bbox(left=10, top=20, right=15, bottom=25)
         )
 
+    # endregion
+
+    # region Utility Functions
     def test_overlaps(self):
         """Test the overlaps method."""
         # Test with overlapping bboxes
@@ -371,6 +382,30 @@ class TestBbox(unittest.TestCase):
         self.assertFalse(bbox1.overlaps(bbox12))
         self.assertFalse(bbox1.overlaps(bbox13))
         self.assertFalse(bbox1.overlaps(bbox14))
+
+    def test_contains(self):
+        """Test the contains method."""
+        bbox1 = Bbox(left=10, top=10, right=30, bottom=30)
+        bbox2 = Bbox(left=15, top=15, right=25, bottom=25)
+        bbox3 = Bbox(left=5, top=5, right=35, bottom=35)
+        bbox4 = Bbox(left=5, top=5, right=25, bottom=25)
+
+        self.assertTrue(bbox1.contains(bbox2))
+        self.assertTrue(bbox3.contains(bbox1))
+        self.assertFalse(bbox1.contains(bbox3))
+        self.assertFalse(bbox1.contains(bbox4))
+
+    def test_is_inside(self):
+        """Test the is_inside method."""
+        bbox1 = Bbox(left=10, top=10, right=30, bottom=30)
+        bbox2 = Bbox(left=15, top=15, right=25, bottom=25)
+        bbox3 = Bbox(left=5, top=5, right=35, bottom=35)
+        bbox4 = Bbox(left=5, top=5, right=25, bottom=25)
+
+        self.assertTrue(bbox2.is_inside(bbox1))
+        self.assertTrue(bbox1.is_inside(bbox3))
+        self.assertFalse(bbox3.is_inside(bbox1))
+        self.assertFalse(bbox4.is_inside(bbox1))
 
     def test_contains_point(self):
         """Test the contains_point method."""
@@ -490,6 +525,7 @@ class TestBbox(unittest.TestCase):
         )
 
     def test_iou(self):
+        """Tests the IoU method."""
         # Test that the IoU is 0 when there is no intersection.
         first = Bbox(left=0, top=0, right=10, bottom=10)
         second = Bbox(left=20, top=20, right=30, bottom=30)
@@ -545,6 +581,72 @@ class TestBbox(unittest.TestCase):
         self.assertEqual(self.bbox.distance_to_point(10, 15), 5)
         self.assertEqual(self.bbox.distance_to_point(10, 45), 5)
         self.assertEqual(self.bbox.distance_to_point(35, 45), (5**2 + 5**2) ** 0.5)
+
+        # Test with different distance metrics
+        self.assertEqual(self.bbox.distance_to_point(5, 20, DistanceMetric.L1), 5)
+        self.assertEqual(self.bbox.distance_to_point(5, 40, DistanceMetric.L1), 5)
+        self.assertEqual(self.bbox.distance_to_point(10, 15, DistanceMetric.L1), 5)
+        self.assertEqual(self.bbox.distance_to_point(10, 45, DistanceMetric.L1), 5)
+        self.assertEqual(self.bbox.distance_to_point(35, 45, DistanceMetric.L1), 10)
+
+        with self.assertRaises(ValueError):
+            self.bbox.distance_to_point(10, 10, dist="fake_dist")  # type: ignore[arg-type]
+
+    def test_distance_to_bbox(self):
+        """Test the distance_to_bbox method."""
+        bbox = Bbox(left=10, top=10, right=30, bottom=30)
+
+        # Identical boxes
+        self.assertEqual(bbox.distance_to_bbox(bbox), 0.0)
+
+        # Overlapping bboxes
+        overlapping = Bbox(left=15, top=15, right=40, bottom=60)
+        self.assertEqual(bbox.distance_to_bbox(overlapping), 0.0)
+
+        # Touching edges (horizontal)
+        touching_right = Bbox(left=30, top=10, right=40, bottom=30)
+        self.assertEqual(bbox.distance_to_bbox(touching_right), 0.0)
+
+        # Touching edges (vertical)
+        touching_bottom = Bbox(left=10, top=30, right=30, bottom=40)
+        self.assertEqual(bbox.distance_to_bbox(touching_bottom), 0.0)
+
+        # Touching at a corner
+        touching_corner = Bbox(left=30, top=30, right=40, bottom=40)
+        self.assertEqual(bbox.distance_to_bbox(touching_corner), 0.0)
+
+        # Diagonal separation
+        diagonal = Bbox(left=35, top=35, right=45, bottom=45)
+        self.assertEqual(bbox.distance_to_bbox(diagonal), (5**2 + 5**2) ** 0.5)
+        self.assertEqual(bbox.distance_to_bbox(diagonal, DistanceMetric.L1), 10.0)
+
+        # Horizontal gap only
+        horizontal_gap = Bbox(left=40, top=10, right=50, bottom=30)
+        self.assertEqual(bbox.distance_to_bbox(horizontal_gap), 10.0)
+
+        # Vertical gap only
+        vertical_gap = Bbox(left=10, top=40, right=30, bottom=50)
+        self.assertEqual(bbox.distance_to_bbox(vertical_gap), 10.0)
+
+        # Negative coordinates
+        negative_bbox = Bbox(left=-20, top=-20, right=-10, bottom=-10)
+        self.assertEqual(bbox.distance_to_bbox(negative_bbox), (20**2 + 20**2) ** 0.5)
+
+        # Zero-area box (point-like)
+        point_bbox = Bbox(left=35, top=15, right=35, bottom=15)
+        self.assertEqual(bbox.distance_to_bbox(point_bbox), 5.0)
+
+        # Symmetry
+        other = Bbox(left=50, top=50, right=60, bottom=60)
+        self.assertEqual(
+            bbox.distance_to_bbox(other),
+            other.distance_to_bbox(bbox),
+        )
+
+        with self.assertRaises(ValueError):
+            bbox.distance_to_bbox(other, dist="fake_dist")  # type: ignore[arg-type]
+
+    # endregion
 
 
 if __name__ == "__main__":
