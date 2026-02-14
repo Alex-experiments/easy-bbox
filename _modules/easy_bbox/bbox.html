@@ -81,7 +81,6 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">model_validator</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">__version__</span> <span class="k">as</span> <span class="n">pydantic_version</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Self</span>
 
 
@@ -121,24 +120,14 @@
     <span class="n">right</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">bottom</span><span class="p">:</span> <span class="nb">float</span>
 
-    <span class="k">if</span> <span class="n">pydantic_version</span> <span class="o">&gt;=</span> <span class="s2">&quot;2.12.0&quot;</span><span class="p">:</span>
-
-        <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
-        <span class="k">def</span><span class="w"> </span><span class="nf">check_passwords_match</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The Bbox is not valid (negative width or height).&quot;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="bp">self</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># Ensure compatibility with previous pydantic versions</span>
-
-<div class="viewcode-block" id="Bbox.check_passwords_match">
-<a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.check_passwords_match">[docs]</a>
-        <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
-        <span class="nd">@classmethod</span>
-        <span class="k">def</span><span class="w"> </span><span class="nf">check_passwords_match</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="s2">&quot;Bbox&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Bbox&quot;</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">left</span> <span class="o">&gt;</span> <span class="n">model</span><span class="o">.</span><span class="n">right</span> <span class="ow">or</span> <span class="n">model</span><span class="o">.</span><span class="n">top</span> <span class="o">&gt;</span> <span class="n">model</span><span class="o">.</span><span class="n">bottom</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The Bbox is not valid (negative width or height).&quot;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">model</span></div>
+<div class="viewcode-block" id="Bbox.check_bbox_validity">
+<a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.check_bbox_validity">[docs]</a>
+    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">check_bbox_validity</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks that the Bbox is valid.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The Bbox is not valid (negative width or height).&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
 
 
     <span class="c1"># region From methods</span>
