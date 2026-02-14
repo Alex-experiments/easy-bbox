@@ -14,10 +14,7 @@ Functions:
     bbox_union: Returns the union of a sequence of Bboxes.
 """
 
-from importlib.metadata import version as _version
-
 from .bbox import Bbox
 from .utils import bbox_intersection, bbox_union, nms
 
-__version__ = _version("easy-bbox")
 __all__ = ["Bbox", "nms", "bbox_union", "bbox_intersection"]
