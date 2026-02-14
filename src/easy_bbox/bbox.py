@@ -13,7 +13,6 @@ from enum import Enum
 from typing import Callable, List, Optional, Sequence, Tuple
 
 from pydantic import BaseModel, model_validator
-from pydantic import __version__ as pydantic_version
 from typing_extensions import Self
 
 
@@ -51,22 +50,12 @@ class Bbox(BaseModel):
     right: float
     bottom: float
 
-    if pydantic_version >= "2.12.0":
-
-        @model_validator(mode="after")
-        def check_passwords_match(self) -> Self:
-            if self.left > self.right or self.top > self.bottom:
-                raise ValueError("The Bbox is not valid (negative width or height).")
-            return self
-    else:
-        # Ensure compatibility with previous pydantic versions
-
-        @model_validator(mode="after")  # type: ignore[arg-type]
-        @classmethod
-        def check_passwords_match(cls, model: "Bbox") -> "Bbox":
-            if model.left > model.right or model.top > model.bottom:
-                raise ValueError("The Bbox is not valid (negative width or height).")
-            return model
+    @model_validator(mode="after")
+    def check_bbox_validity(self) -> Self:
+        """Checks that the Bbox is valid."""
+        if self.left > self.right or self.top > self.bottom:
+            raise ValueError("The Bbox is not valid (negative width or height).")
+        return self
 
     # region From methods
     @classmethod
