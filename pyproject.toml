@@ -40,9 +40,8 @@ include = ["easy_bbox*"]
 [tool.setuptools.package-data]
 easy_bbox = ["py.typed"]
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
-    "sphinx>=7.4.7",
     "pytest>=7.0",
     "pytest-cov",
     "coverage",
@@ -51,3 +50,8 @@ dev = [
     "pre-commit",
     "twine",
 ]
+docs = [
+    "mkdocs-material>=9.5",
+    "mkdocstrings[python]>=0.27",
+]
+

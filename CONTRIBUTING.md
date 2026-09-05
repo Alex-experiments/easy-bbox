@@ -15,7 +15,7 @@ cd easy-bbox
 
 # 2. Set-up the venv
 uv venv
-uv pip install -e .[dev]
+uv sync
 ```
 
 ## Testing
@@ -23,7 +23,7 @@ uv pip install -e .[dev]
 Run tests using pytest:
 
 ```bash
-pytest
+uv run pytest
 ```
 
 ## Code Quality
@@ -38,14 +38,8 @@ This will set up the git hook scripts. Now pre-commit will run automatically on 
 
 ## Documentation
 
-Documentation is build automatically when the main branch is updated. You can generate it locally using Sphinx:
+Documentation is build automatically when the main branch is updated. You can generate it locally:
 
 ```bash
-cd docs
-make html
-```
-
-But you might need to install these packages beforehand:
-```bash
-pip install sphinx sphinx_rtd_theme sphinx-autodoc-typehints
+uv run --group docs mkdocs serve
 ```
