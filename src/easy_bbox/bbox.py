@@ -74,7 +74,7 @@ class Bbox(BaseModel):
             ValueError: If the length of the sequence is not 4, or if the Bbox is not valid
                 (ie `left > right` or `top > bottom`).
 
-        Example:
+        Examples:
             >>> bbox = Bbox.from_tlbr((10, 20, 30, 40))
             >>> print(bbox.left, bbox.top, bbox.right, bbox.bottom)
             10 20 30 40
@@ -98,7 +98,7 @@ class Bbox(BaseModel):
             ValueError: If the length of the sequence is not 4, or if the Bbox is not valid
                 (ie `width < 0` or `height < 0`).
 
-        Example:
+        Examples:
             >>> bbox = Bbox.from_tlwh((10, 20, 20, 30))
             >>> print(bbox.left, bbox.top, bbox.right, bbox.bottom)
             10 20 30 50
@@ -127,7 +127,7 @@ class Bbox(BaseModel):
             ValueError: If the length of the sequence is not 4, or if the Bbox is not valid
                 (ie `width < 0` or `height < 0`).
 
-        Example:
+        Examples:
             >>> bbox = Bbox.from_cwh((20, 35, 20, 30))
             >>> print(bbox.left, bbox.top, bbox.right, bbox.bottom)
             10 20 30 50
@@ -156,10 +156,10 @@ class Bbox(BaseModel):
 
         Returns:
             Tuple[float, float, float, float]: The bounding box coordinates (x_min, y_min,
-            x_max, y_max).
+                x_max, y_max).
 
-            x_min and y_min are the coordinates of the top-left corner of the bounding box.
-            x_max and y_max are the coordinates of the bottom-right corner of the bounding box.
+                x_min and y_min are the coordinates of the top-left corner of the bounding box.
+                x_max and y_max are the coordinates of the bottom-right corner of the bounding box.
         """
         return (self.left, self.top, self.right, self.bottom)
 
@@ -169,10 +169,10 @@ class Bbox(BaseModel):
 
         Returns:
             List[float]: The bounding box coordinates [x_min, y_min,
-            x_max, y_max].
+                x_max, y_max].
 
-            x_min and y_min are the coordinates of the top-left corner of the bounding box.
-            x_max and y_max are the coordinates of the bottom-right corner of the bounding box.
+                x_min and y_min are the coordinates of the top-left corner of the bounding box.
+                x_max and y_max are the coordinates of the bottom-right corner of the bounding box.
         """
         return [self.left, self.top, self.right, self.bottom]
 
@@ -187,12 +187,12 @@ class Bbox(BaseModel):
 
         Returns:
             Tuple[float, float, float, float]: The bounding box coordinates (x_min, y_min,
-            x_max, y_max).
+                x_max, y_max).
 
-            x_min and y_min are the coordinates of the top-left corner of the bounding box.
-            x_max and y_max are the coordinates of the bottom-right corner of the bounding box.
+                x_min and y_min are the coordinates of the top-left corner of the bounding box.
+                x_max and y_max are the coordinates of the bottom-right corner of the bounding box.
 
-            All the returned values are **NORMALIZED** based on the image dimensions.
+                All the returned values are **NORMALIZED** based on the image dimensions.
         """
         return (
             self.left / img_w,
@@ -207,9 +207,9 @@ class Bbox(BaseModel):
 
         Returns:
             Tuple[float, float, float, float]: The bounding box coordinates (x_min, y_min,
-            width, height).
+                width, height).
 
-            x_min and y_min are coordinates of the top-left corner of the bounding box.
+                x_min and y_min are coordinates of the top-left corner of the bounding box.
         """
         return (self.left, self.top, self.width, self.height)
 
@@ -224,11 +224,11 @@ class Bbox(BaseModel):
 
         Returns:
             Tuple[float, float, float, float]: The bounding box coordinates [x_min, y_min,
-            width, height].
+                width, height].
 
-            x_min and y_min are the coordinates of the top-left corner of the bounding box.
+                x_min and y_min are the coordinates of the top-left corner of the bounding box.
 
-            All the returned values are **NORMALIZED** based on the image dimensions.
+                All the returned values are **NORMALIZED** based on the image dimensions.
         """
         return (
             self.left / img_w,
@@ -243,7 +243,7 @@ class Bbox(BaseModel):
 
         Returns:
             Tuple[float, float, float, float]: The bounding box coordinates (x_center, y_center,
-            width, height).
+                width, height).
         """
         return (*self.center, self.width, self.height)
 
@@ -258,7 +258,7 @@ class Bbox(BaseModel):
 
         Returns:
             Tuple[float, float, float, float]: The NORMALIZED bounding box
-            coordinates (x_center, y_center, width, height).
+                coordinates (x_center, y_center, width, height).
         """
         cx, cy = self.center
         return (cx / img_w, cy / img_h, self.width / img_w, self.height / img_h)
@@ -276,7 +276,7 @@ class Bbox(BaseModel):
 
         Returns:
             The corners coordinates in (x, y) format.
-            The order is `top_left > top_right > bottom_right > bottom_left`
+                The order is `top_left > top_right > bottom_right > bottom_left`
         """
         return (
             (self.left, self.top),

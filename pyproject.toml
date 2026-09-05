@@ -42,7 +42,6 @@ easy_bbox = ["py.typed"]
 
 [project.optional-dependencies]
 dev = [
-    "sphinx>=7.4.7",
     "pytest>=7.0",
     "pytest-cov",
     "coverage",
@@ -51,3 +50,10 @@ dev = [
     "pre-commit",
     "twine",
 ]
+
+[dependency-groups]
+docs = [
+    "mkdocs-material>=9.5",
+    "mkdocstrings[python]>=0.27",
+]
+
