@@ -26,6 +26,7 @@ theme:
   favicon: null
   features:
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
     - navigation.top
     - search.highlight
