@@ -233,8 +233,8 @@ class Bbox(BaseModel):
         return (
             self.left / img_w,
             self.top / img_h,
-            self.right / img_w,
-            self.bottom / img_h,
+            self.width / img_w,
+            self.height / img_h,
         )
 
     def to_cwh(self) -> Tuple[float, float, float, float]:
