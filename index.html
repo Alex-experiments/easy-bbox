@@ -244,15 +244,15 @@ returns <cite>Bbox(left=0, top=0, right=32, bottom=64)</cite></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>img_w</strong> (<em>int</em>) – The image width in pixels.</p></li>
-<li><p><strong>img_h</strong> (<em>int</em>) – The image height in pixels.</p></li>
+<li><p><strong>img_w</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The image width in pixels.</p></li>
+<li><p><strong>img_h</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The image height in pixels.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The clipped Bbox.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -263,13 +263,13 @@ returns <cite>Bbox(left=0, top=0, right=32, bottom=64)</cite></p>
 <dd><p>Checks if the other Bbox is contained by this one.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox"><em>Bbox</em></a>) – The other bounding box.</p>
+<dd class="field-odd"><p><strong>other</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span>) – The other bounding box.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>True if this bounding box contains the other one.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -281,15 +281,15 @@ returns <cite>Bbox(left=0, top=0, right=32, bottom=64)</cite></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>float</em>) – The x-coordinate of the point.</p></li>
-<li><p><strong>y</strong> (<em>float</em>) – The y-coordinate of the point.</p></li>
+<li><p><strong>x</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The x-coordinate of the point.</p></li>
+<li><p><strong>y</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The y-coordinate of the point.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>True if the point is inside the bounding box, False otherwise.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -302,15 +302,15 @@ Distance is zero if the boxes overlap or touch.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>other</strong> (<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox"><em>Bbox</em></a>) – The other bounding box.</p></li>
-<li><p><strong>dist</strong> (<em>DistanceMetric</em>) – The distance metric to use. Defaults to <code class="docutils literal notranslate"><span class="pre">DistanceMetric.L2</span></code>.</p></li>
+<li><p><strong>other</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span>) – The other bounding box.</p></li>
+<li><p><strong>dist</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">DistanceMetric</span></code></span>) – The distance metric to use. Defaults to <code class="docutils literal notranslate"><span class="pre">DistanceMetric.L2</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The distance between the two bounding boxes.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – If a wrong distance metric is provided.</p>
@@ -325,16 +325,16 @@ Distance is zero if the boxes overlap or touch.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>float</em>) – The x-coordinate of the point.</p></li>
-<li><p><strong>y</strong> (<em>float</em>) – The y-coordinate of the point.</p></li>
-<li><p><strong>dist</strong> (<em>DistanceMetric</em>) – The distance metric to use. Defaults to <code class="docutils literal notranslate"><span class="pre">DistanceMetric.L2</span></code>.</p></li>
+<li><p><strong>x</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The x-coordinate of the point.</p></li>
+<li><p><strong>y</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The y-coordinate of the point.</p></li>
+<li><p><strong>dist</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">DistanceMetric</span></code></span>) – The distance metric to use. Defaults to <code class="docutils literal notranslate"><span class="pre">DistanceMetric.L2</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The distance from the bounding box to the point.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – If a wrong distance metric is provided.</p>
@@ -349,13 +349,13 @@ Distance is zero if the boxes overlap or touch.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>left</strong> (<em>float</em><em>, </em><em>optional</em>) – The amount to expand the left side of the bounding box by.
+<li><p><strong>left</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The amount to expand the left side of the bounding box by.
 Defaults to 0.</p></li>
-<li><p><strong>top</strong> (<em>float</em><em>, </em><em>optional</em>) – The amount to expand the top side of the bounding box by.
+<li><p><strong>top</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The amount to expand the top side of the bounding box by.
 Defaults to 0.</p></li>
-<li><p><strong>right</strong> (<em>float</em><em>, </em><em>optional</em>) – The amount to expand the right side of the bounding box by.
+<li><p><strong>right</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The amount to expand the right side of the bounding box by.
 Defaults to 0.</p></li>
-<li><p><strong>bottom</strong> (<em>float</em><em>, </em><em>optional</em>) – The amount to expand the bottom side of the bounding box by.
+<li><p><strong>bottom</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The amount to expand the bottom side of the bounding box by.
 Defaults to 0.</p></li>
 </ul>
 </dd>
@@ -363,7 +363,7 @@ Defaults to 0.</p></li>
 <dd class="field-even"><p>The expanded Bbox instance.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -374,13 +374,13 @@ Defaults to 0.</p></li>
 <dd><p>Return an expanded Bbox by the specified padding.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>padding</strong> (<em>float</em>) – The amount to expand the bounding box by.</p>
+<dd class="field-odd"><p><strong>padding</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The amount to expand the bounding box by.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The expanded Bbox instance.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -391,14 +391,14 @@ Defaults to 0.</p></li>
 <dd><p>Initializes the bounding box from top-left and width-height coordinates.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>tlwh</strong> (<em>Sequence</em><em>[</em><em>float</em><em>]</em>) – A sequence containing the top-left and width-height coordinates
+<dd class="field-odd"><p><strong>tlwh</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span>) – A sequence containing the top-left and width-height coordinates
 of the bounding box in the format (left, top, width, height).</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The Bbox instance.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – If the length of the sequence is not 4, or if the Bbox is not valid
@@ -419,14 +419,14 @@ of the bounding box in the format (left, top, width, height).</p>
 <dd><p>Initializes the bounding box from center and width-height coordinates.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>cwh</strong> (<em>Sequence</em><em>[</em><em>float</em><em>]</em>) – A sequence containing the center and width-height coordinates
+<dd class="field-odd"><p><strong>cwh</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span>) – A sequence containing the center and width-height coordinates
 of the bounding box in the format (center_x, center_y, width, height).</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The Bbox instance.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – If the length of the sequence is not 4, or if the Bbox is not valid
@@ -447,14 +447,14 @@ of the bounding box in the format (center_x, center_y, width, height).</p>
 <dd><p>Initializes the bounding box from top-left and bottom-right coordinates.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>tlbr</strong> (<em>Sequence</em><em>[</em><em>float</em><em>]</em>) – A sequence containing the top-left and bottom-right coordinates
+<dd class="field-odd"><p><strong>tlbr</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span>) – A sequence containing the top-left and bottom-right coordinates
 of the bounding box in the format (left, top, right, bottom).</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The Bbox instance.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – If the length of the sequence is not 4, or if the Bbox is not valid
@@ -475,14 +475,14 @@ of the bounding box in the format (left, top, right, bottom).</p>
 <dd><p>Initializes the bounding box from top-left and bottom-right coordinates.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>tlbr</strong> (<em>Sequence</em><em>[</em><em>float</em><em>]</em>) – A sequence containing the top-left and bottom-right coordinates
+<dd class="field-odd"><p><strong>tlbr</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span>) – A sequence containing the top-left and bottom-right coordinates
 of the bounding box in the format (left, top, right, bottom).</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The Bbox instance.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – If the length of the sequence is not 4, or if the Bbox is not valid
@@ -503,14 +503,14 @@ of the bounding box in the format (left, top, right, bottom).</p>
 <dd><p>Initializes the bounding box from top-left and bottom-right coordinates.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>tlbr</strong> (<em>Sequence</em><em>[</em><em>float</em><em>]</em>) – A sequence containing the top-left and bottom-right coordinates
+<dd class="field-odd"><p><strong>tlbr</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span>) – A sequence containing the top-left and bottom-right coordinates
 of the bounding box in the format (left, top, right, bottom).</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The Bbox instance.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – If the length of the sequence is not 4, or if the Bbox is not valid
@@ -531,14 +531,14 @@ of the bounding box in the format (left, top, right, bottom).</p>
 <dd><p>Initializes the bounding box from top-left and width-height coordinates.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>tlwh</strong> (<em>Sequence</em><em>[</em><em>float</em><em>]</em>) – A sequence containing the top-left and width-height coordinates
+<dd class="field-odd"><p><strong>tlwh</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span>) – A sequence containing the top-left and width-height coordinates
 of the bounding box in the format (left, top, width, height).</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The Bbox instance.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – If the length of the sequence is not 4, or if the Bbox is not valid
@@ -559,14 +559,14 @@ of the bounding box in the format (left, top, width, height).</p>
 <dd><p>Initializes the bounding box from top-left and bottom-right coordinates.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>tlbr</strong> (<em>Sequence</em><em>[</em><em>float</em><em>]</em>) – A sequence containing the top-left and bottom-right coordinates
+<dd class="field-odd"><p><strong>tlbr</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span>) – A sequence containing the top-left and bottom-right coordinates
 of the bounding box in the format (left, top, right, bottom).</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The Bbox instance.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – If the length of the sequence is not 4, or if the Bbox is not valid
@@ -594,13 +594,13 @@ of the bounding box in the format (left, top, right, bottom).</p>
 <cite>left &gt; right</cite> or <cite>top &gt; bottom</cite>, returns None.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox"><em>Bbox</em></a>) – The other bounding box to calculate the intersection with.</p>
+<dd class="field-odd"><p><strong>other</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span>) – The other bounding box to calculate the intersection with.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The intersection of the two bounding boxes if valid.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Optional[<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a>]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a>]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -611,13 +611,13 @@ of the bounding box in the format (left, top, right, bottom).</p>
 <dd><p>Calculates the Intersection over Union (IoU) with another bounding box.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox"><em>Bbox</em></a>) – The other Bbox.</p>
+<dd class="field-odd"><p><strong>other</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span>) – The other Bbox.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The IoU between the two bounding boxes.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -628,13 +628,13 @@ of the bounding box in the format (left, top, right, bottom).</p>
 <dd><p>Checks if this Bbox is contained by the other one.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox"><em>Bbox</em></a>) – The other bounding box.</p>
+<dd class="field-odd"><p><strong>other</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span>) – The other bounding box.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>True if this bounding box is contained by the other one.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -657,13 +657,13 @@ of the bounding box in the format (left, top, right, bottom).</p>
 <p>Two bboxes are considered as overlapping if they intersect with a non-zero area.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox"><em>Bbox</em></a>) – The other bounding box to check for overlap.</p>
+<dd class="field-odd"><p><strong>other</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span>) – The other bounding box to check for overlap.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>True if the bounding boxes overlap, False otherwise.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -674,13 +674,13 @@ of the bounding box in the format (left, top, right, bottom).</p>
 <dd><p>Returns a padded Bbox to achieve the target aspect ratio.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>target_ratio</strong> (<em>float</em>) – The target aspect ratio.</p>
+<dd class="field-odd"><p><strong>target_ratio</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The target aspect ratio.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A Bbox instance padded to the correct ratio.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – If target_ratio is &lt;= 0.</p>
@@ -710,14 +710,14 @@ of the bounding box in the format (left, top, right, bottom).</p>
 <dd><p>Return a scaled Bbox by the specified scale factor. The scaling will be from the center.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>scale_factor</strong> (<em>float</em>) – The factor to scale the bounding box by. Width and height will
+<dd class="field-odd"><p><strong>scale_factor</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The factor to scale the bounding box by. Width and height will
 be scaled by this factor.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The scaled Bbox instance.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – If the scale is strictly negative.</p>
@@ -732,14 +732,14 @@ be scaled by this factor.</p>
 The scaling will be from the center.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>scale_factor</strong> (<em>float</em>) – The factor to scale the bounding box by. The area will be scaled by this factor.
+<dd class="field-odd"><p><strong>scale_factor</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The factor to scale the bounding box by. The area will be scaled by this factor.
 (and width and height will be scaled by the square root of this factor.)</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The scaled Bbox instance.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – If the scale is strictly negative.</p>
@@ -754,9 +754,9 @@ The scaling will be from the center.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>horizontal_shift</strong> (<em>float</em><em>, </em><em>optional</em>) – The amount to shift the bounding box horizontally.
+<li><p><strong>horizontal_shift</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The amount to shift the bounding box horizontally.
 Defaults to 0.</p></li>
-<li><p><strong>vertical_shift</strong> (<em>float</em><em>, </em><em>optional</em>) – The amount to shift the bounding box vertically.
+<li><p><strong>vertical_shift</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The amount to shift the bounding box vertically.
 Defaults to 0.</p></li>
 </ul>
 </dd>
@@ -764,7 +764,7 @@ Defaults to 0.</p></li>
 <dd class="field-even"><p>The shifted Bbox instance.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -777,8 +777,8 @@ based on the image dimensions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>img_w</strong> (<em>int</em>) – The image width in pixels.</p></li>
-<li><p><strong>img_h</strong> (<em>int</em>) – The image height in pixels.</p></li>
+<li><p><strong>img_w</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The image width in pixels.</p></li>
+<li><p><strong>img_h</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The image height in pixels.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -790,7 +790,7 @@ x_max and y_max are the coordinates of the bottom-right corner of the bounding b
 </p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Tuple[float, float, float, float]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -807,7 +807,7 @@ width, height).</p>
 </p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Tuple[float, float, float, float]</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -822,7 +822,7 @@ width, height).</p>
 width, height).</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Tuple[float, float, float, float]</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -834,14 +834,14 @@ width, height).</p>
 rounded to int.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>rounding_method</strong> (<em>RoundingMethod</em>) – The rounding method to use. Defaults to
+<dd class="field-odd"><p><strong>rounding_method</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">RoundingMethod</span></code></span>) – The rounding method to use. Defaults to
 <cite>RoundingMethod.ROUND</cite>.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The coordinates as integers.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Tuple[int, int, int, int]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</span></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – If a wrong rounding method is provided.</p>
@@ -862,7 +862,7 @@ x_max and y_max are the coordinates of the bottom-right corner of the bounding b
 </p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>List[float]</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -875,8 +875,8 @@ based on the image dimensions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>img_w</strong> (<em>int</em>) – The image width in pixels.</p></li>
-<li><p><strong>img_h</strong> (<em>int</em>) – The image height in pixels.</p></li>
+<li><p><strong>img_w</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The image width in pixels.</p></li>
+<li><p><strong>img_h</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The image height in pixels.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -884,7 +884,7 @@ based on the image dimensions.</p>
 coordinates (x_center, y_center, width, height).</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Tuple[float, float, float, float]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -897,8 +897,8 @@ based on the image dimensions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>img_w</strong> (<em>int</em>) – The image width in pixels.</p></li>
-<li><p><strong>img_h</strong> (<em>int</em>) – The image height in pixels.</p></li>
+<li><p><strong>img_w</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The image width in pixels.</p></li>
+<li><p><strong>img_h</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The image height in pixels.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -910,7 +910,7 @@ x_max and y_max are the coordinates of the bottom-right corner of the bounding b
 </p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Tuple[float, float, float, float]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -923,8 +923,8 @@ based on the image dimensions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>img_w</strong> (<em>int</em>) – The image width in pixels.</p></li>
-<li><p><strong>img_h</strong> (<em>int</em>) – The image height in pixels.</p></li>
+<li><p><strong>img_w</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The image width in pixels.</p></li>
+<li><p><strong>img_h</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The image height in pixels.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -935,7 +935,7 @@ width, height].</p>
 </p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Tuple[float, float, float, float]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -953,7 +953,7 @@ x_max and y_max are the coordinates of the bottom-right corner of the bounding b
 </p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Tuple[float, float, float, float]</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -986,7 +986,7 @@ x_max and y_max are the coordinates of the bottom-right corner of the bounding b
 </p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Tuple[float, float, float, float]</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1003,7 +1003,7 @@ width, height).</p>
 </p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Tuple[float, float, float, float]</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1021,7 +1021,7 @@ x_max and y_max are the coordinates of the bottom-right corner of the bounding b
 </p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Tuple[float, float, float, float]</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1034,8 +1034,8 @@ based on the image dimensions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>img_w</strong> (<em>int</em>) – The image width in pixels.</p></li>
-<li><p><strong>img_h</strong> (<em>int</em>) – The image height in pixels.</p></li>
+<li><p><strong>img_w</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The image width in pixels.</p></li>
+<li><p><strong>img_h</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The image height in pixels.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -1043,7 +1043,7 @@ based on the image dimensions.</p>
 coordinates (x_center, y_center, width, height).</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Tuple[float, float, float, float]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1059,13 +1059,13 @@ coordinates (x_center, y_center, width, height).</p>
 <dd><p>Calculates the minimal Bbox that englobes this one AND the other.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox"><em>Bbox</em></a>) – The other bounding box to calculate the union with.</p>
+<dd class="field-odd"><p><strong>other</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span>) – The other bounding box to calculate the union with.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The minimal englobing Bbox.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1084,7 +1084,7 @@ coordinates (x_center, y_center, width, height).</p>
 <dd><p>Calculate the intersection of a list of bounding boxes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>bboxes</strong> (<em>Sequence</em><em>[</em><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox"><em>Bbox</em></a><em>]</em>) – A sequence of bounding boxes.</p>
+<dd class="field-odd"><p><strong>bboxes</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a>]</span>) – A sequence of bounding boxes.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><dl class="simple">
@@ -1094,7 +1094,7 @@ coordinates (x_center, y_center, width, height).</p>
 </p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Optional[<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a>]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a>]</span></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – If the input list of bounding boxes is empty.</p>
@@ -1108,13 +1108,13 @@ coordinates (x_center, y_center, width, height).</p>
 <dd><p>Calculate the union of a list of bounding boxes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>bboxes</strong> (<em>Sequence</em><em>[</em><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox"><em>Bbox</em></a><em>]</em>) – A sequence of bounding boxes.</p>
+<dd class="field-odd"><p><strong>bboxes</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a>]</span>) – A sequence of bounding boxes.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The bounding box that represents the union of all input bounding boxes.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a></span></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – If the input list of bounding boxes is empty.</p>
@@ -1129,16 +1129,16 @@ coordinates (x_center, y_center, width, height).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>bboxes</strong> (<em>List</em><em>[</em><a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox"><em>Bbox</em></a><em>]</em>) – List of bounding boxes.</p></li>
-<li><p><strong>scores</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – List of confidence scores for each bounding box.</p></li>
-<li><p><strong>iou_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – IoU threshold for suppression. Defaults to 0.5.</p></li>
+<li><p><strong>bboxes</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a>]</span>) – List of bounding boxes.</p></li>
+<li><p><strong>scores</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span>) – List of confidence scores for each bounding box.</p></li>
+<li><p><strong>iou_threshold</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – IoU threshold for suppression. Defaults to 0.5.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>List of selected bounding boxes and their scores.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[Tuple[<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.Bbox">Bbox</a>, float]]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<a class="reference internal" href="#easy_bbox.Bbox" title="easy_bbox.bbox.Bbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bbox</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]]</span></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – If the length of bboxes and scores do not match.</p>

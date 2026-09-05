@@ -66,13 +66,13 @@
            <div itemprop="articleBody">
              
   <h1>Source code for easy_bbox.bbox</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">"""</span>
 <span class="sd">bbox.py</span>
 
 <span class="sd">Provides the `Bbox` class and utility functions for manipulating bounding boxes</span>
 <span class="sd">in various coordinate formats (Pascal VOC, COCO, YOLO, etc.). Supports</span>
 <span class="sd">transformations, geometric operations, and conversions.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
@@ -85,20 +85,20 @@
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">DistanceMetric</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="n">L1</span> <span class="o">=</span> <span class="s2">&quot;L1&quot;</span>  <span class="c1"># Manhattan distance</span>
-    <span class="n">L2</span> <span class="o">=</span> <span class="s2">&quot;L2&quot;</span>  <span class="c1"># Euclidian distance</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="s2">"L1"</span>  <span class="c1"># Manhattan distance</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="s2">"L2"</span>  <span class="c1"># Euclidian distance</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">RoundingMethod</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="n">ROUND</span> <span class="o">=</span> <span class="s2">&quot;round&quot;</span>
-    <span class="n">CEIL</span> <span class="o">=</span> <span class="s2">&quot;ceil&quot;</span>
-    <span class="n">FLOOR</span> <span class="o">=</span> <span class="s2">&quot;floor&quot;</span>
+    <span class="n">ROUND</span> <span class="o">=</span> <span class="s2">"round"</span>
+    <span class="n">CEIL</span> <span class="o">=</span> <span class="s2">"ceil"</span>
+    <span class="n">FLOOR</span> <span class="o">=</span> <span class="s2">"floor"</span>
 
 
 <div class="viewcode-block" id="Bbox">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Bbox</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    A class to represent a Bbox (inherits from Pydantic BaseModel).</span>
 
 <span class="sd">    The bbox is stored in Pascal_VOC format:</span>
@@ -113,7 +113,7 @@
 <span class="sd">        top (float): The top coordinate of the bounding box.</span>
 <span class="sd">        right (float): The right coordinate of the bounding box.</span>
 <span class="sd">        bottom (float): The bottom coordinate of the bounding box.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">left</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">top</span><span class="p">:</span> <span class="nb">float</span>
@@ -122,11 +122,11 @@
 
 <div class="viewcode-block" id="Bbox.check_bbox_validity">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.check_bbox_validity">[docs]</a>
-    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
+    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">"after"</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">check_bbox_validity</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks that the Bbox is valid.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Checks that the Bbox is valid."""</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The Bbox is not valid (negative width or height).&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"The Bbox is not valid (negative width or height)."</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
 
@@ -135,7 +135,7 @@
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.from_tlbr">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_tlbr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">tlbr</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Bbox</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Initializes the bounding box from top-left and bottom-right coordinates.</span>
 
 <span class="sd">        Args:</span>
@@ -153,7 +153,7 @@
 <span class="sd">            &gt;&gt;&gt; bbox = Bbox.from_tlbr((10, 20, 30, 40))</span>
 <span class="sd">            &gt;&gt;&gt; print(bbox.left, bbox.top, bbox.right, bbox.bottom)</span>
 <span class="sd">            10 20 30 40</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">_assert_sequence_len</span><span class="p">(</span><span class="n">seq</span><span class="o">=</span><span class="n">tlbr</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">tlbr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">top</span><span class="o">=</span><span class="n">tlbr</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">right</span><span class="o">=</span><span class="n">tlbr</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">bottom</span><span class="o">=</span><span class="n">tlbr</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span></div>
 
@@ -162,7 +162,7 @@
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.from_tlwh">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_tlwh</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">tlwh</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Bbox</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Initializes the bounding box from top-left and width-height coordinates.</span>
 
 <span class="sd">        Args:</span>
@@ -180,7 +180,7 @@
 <span class="sd">            &gt;&gt;&gt; bbox = Bbox.from_tlwh((10, 20, 20, 30))</span>
 <span class="sd">            &gt;&gt;&gt; print(bbox.left, bbox.top, bbox.right, bbox.bottom)</span>
 <span class="sd">            10 20 30 50</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">_assert_sequence_len</span><span class="p">(</span><span class="n">seq</span><span class="o">=</span><span class="n">tlwh</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
             <span class="n">left</span><span class="o">=</span><span class="n">tlwh</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
@@ -194,7 +194,7 @@
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.from_cwh">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_cwh</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">cwh</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Bbox</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Initializes the bounding box from center and width-height coordinates.</span>
 
 <span class="sd">        Args:</span>
@@ -212,7 +212,7 @@
 <span class="sd">            &gt;&gt;&gt; bbox = Bbox.from_cwh((20, 35, 20, 30))</span>
 <span class="sd">            &gt;&gt;&gt; print(bbox.left, bbox.top, bbox.right, bbox.bottom)</span>
 <span class="sd">            10 20 30 50</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">_assert_sequence_len</span><span class="p">(</span><span class="n">seq</span><span class="o">=</span><span class="n">cwh</span><span class="p">)</span>
         <span class="n">half_width</span> <span class="o">=</span> <span class="n">cwh</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span>
         <span class="n">half_height</span> <span class="o">=</span> <span class="n">cwh</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span>
@@ -235,7 +235,7 @@
 <div class="viewcode-block" id="Bbox.to_tlbr">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.to_tlbr">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">to_tlbr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Returns the bounding box coordinates in Top-Left, Bottom-Right format.</span>
 
 <span class="sd">        Returns:</span>
@@ -244,14 +244,14 @@
 
 <span class="sd">            x_min and y_min are the coordinates of the top-left corner of the bounding box.</span>
 <span class="sd">            x_max and y_max are the coordinates of the bottom-right corner of the bounding box.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Bbox.to_list">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.to_list">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Returns the bounding box coordinates in Top-Left, Bottom-Right format.</span>
 
 <span class="sd">        Returns:</span>
@@ -260,14 +260,14 @@
 
 <span class="sd">            x_min and y_min are the coordinates of the top-left corner of the bounding box.</span>
 <span class="sd">            x_max and y_max are the coordinates of the bottom-right corner of the bounding box.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="Bbox.to_norm_tlbr">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.to_norm_tlbr">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">to_norm_tlbr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_w</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">img_h</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Returns the bounding box coordinates in Top-Left, Bottom-Right format, normalized</span>
 <span class="sd">        based on the image dimensions.</span>
 
@@ -283,7 +283,7 @@
 <span class="sd">            x_max and y_max are the coordinates of the bottom-right corner of the bounding box.</span>
 
 <span class="sd">            All the returned values are **NORMALIZED** based on the image dimensions.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">/</span> <span class="n">img_w</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">/</span> <span class="n">img_h</span><span class="p">,</span>
@@ -295,7 +295,7 @@
 <div class="viewcode-block" id="Bbox.to_tlwh">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.to_tlwh">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">to_tlwh</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Returns the bounding box coordinates in Top-Left, Width-Height format.</span>
 
 <span class="sd">        Returns:</span>
@@ -303,14 +303,14 @@
 <span class="sd">            width, height).</span>
 
 <span class="sd">            x_min and y_min are coordinates of the top-left corner of the bounding box.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Bbox.to_norm_tlwh">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.to_norm_tlwh">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">to_norm_tlwh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_w</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">img_h</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Returns the bounding box coordinates in Top-Left, Width-Height format, normalized</span>
 <span class="sd">        based on the image dimensions.</span>
 
@@ -325,32 +325,32 @@
 <span class="sd">            x_min and y_min are the coordinates of the top-left corner of the bounding box.</span>
 
 <span class="sd">            All the returned values are **NORMALIZED** based on the image dimensions.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">/</span> <span class="n">img_w</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">/</span> <span class="n">img_h</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">/</span> <span class="n">img_w</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span> <span class="o">/</span> <span class="n">img_h</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="n">img_w</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="n">img_h</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Bbox.to_cwh">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.to_cwh">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">to_cwh</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Returns the bounding box coordinates in Center, Width-Height format.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[float, float, float, float]: The bounding box coordinates (x_center, y_center,</span>
 <span class="sd">            width, height).</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Bbox.to_norm_cwh">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.to_norm_cwh">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">to_norm_cwh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_w</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">img_h</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Returns the bounding box coordinates in Center, Width-Height format, normalized</span>
 <span class="sd">        based on the image dimensions.</span>
 
@@ -361,7 +361,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[float, float, float, float]: The NORMALIZED bounding box</span>
 <span class="sd">            coordinates (x_center, y_center, width, height).</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">cx</span> <span class="o">/</span> <span class="n">img_w</span><span class="p">,</span> <span class="n">cy</span> <span class="o">/</span> <span class="n">img_h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="n">img_w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="n">img_h</span><span class="p">)</span></div>
 
@@ -376,13 +376,13 @@
         <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
     <span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Returns the bounding box corners as points.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            The corners coordinates in (x, y) format.</span>
 <span class="sd">            The order is `top_left &gt; top_right &gt; bottom_right &gt; bottom_left`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="p">),</span>
             <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="p">),</span>
@@ -396,7 +396,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">to_int_tuple</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">rounding_method</span><span class="p">:</span> <span class="n">RoundingMethod</span> <span class="o">=</span> <span class="n">RoundingMethod</span><span class="o">.</span><span class="n">ROUND</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Returns the bounding box coordinates in Top-Left, Bottom-Right format, with values</span>
 <span class="sd">        rounded to int.</span>
 
@@ -409,7 +409,7 @@
 
 <span class="sd">        Raises:</span>
 <span class="sd">            ValueError: If a wrong rounding method is provided.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">rounding_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">int</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">rounding_method</span> <span class="o">==</span> <span class="n">RoundingMethod</span><span class="o">.</span><span class="n">CEIL</span><span class="p">:</span>
@@ -419,7 +419,7 @@
         <span class="k">elif</span> <span class="n">rounding_method</span> <span class="o">==</span> <span class="n">RoundingMethod</span><span class="o">.</span><span class="n">ROUND</span><span class="p">:</span>
             <span class="n">rounding_func</span> <span class="o">=</span> <span class="nb">round</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">rounding_method</span><span class="si">}</span><span class="s2"> is not a valid rounding method.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">rounding_method</span><span class="si">}</span><span class="s2"> is not a valid rounding method."</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="p">(</span>
             <span class="n">rounding_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">),</span>
@@ -441,7 +441,7 @@
 <div class="viewcode-block" id="Bbox.shift">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.shift">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shift</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">horizontal_shift</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">vertical_shift</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bbox</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Return a shifted Bbox by the specified horizontal and vertical amounts.</span>
 
 <span class="sd">        Args:</span>
@@ -452,7 +452,7 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Bbox: The shifted Bbox instance.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">Bbox</span><span class="p">(</span>
             <span class="n">left</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">+</span> <span class="n">horizontal_shift</span><span class="p">,</span>
             <span class="n">top</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">+</span> <span class="n">vertical_shift</span><span class="p">,</span>
@@ -464,7 +464,7 @@
 <div class="viewcode-block" id="Bbox.scale">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.scale">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bbox</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Return a scaled Bbox by the specified scale factor. The scaling will be from the center.</span>
 
 <span class="sd">        Args:</span>
@@ -476,10 +476,10 @@
 
 <span class="sd">        Raises:</span>
 <span class="sd">            ValueError: If the scale is strictly negative.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">scale_factor</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;Scaling with a negative value would result in an invalid Bbox.&quot;</span>
+                <span class="s2">"Scaling with a negative value would result in an invalid Bbox."</span>
             <span class="p">)</span>
 
         <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span>
@@ -497,7 +497,7 @@
 <div class="viewcode-block" id="Bbox.scale_area">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.scale_area">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">scale_area</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bbox</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Return a scaled Bbox such that `new area`/`old area` == `scale_factor`.</span>
 <span class="sd">        The scaling will be from the center.</span>
 
@@ -510,10 +510,10 @@
 
 <span class="sd">        Raises:</span>
 <span class="sd">            ValueError: If the scale is strictly negative.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">scale_factor</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;Scaling with a negative value would result in an invalid Bbox.&quot;</span>
+                <span class="s2">"Scaling with a negative value would result in an invalid Bbox."</span>
             <span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="o">=</span><span class="n">scale_factor</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span></div>
@@ -522,7 +522,7 @@
 <div class="viewcode-block" id="Bbox.expand_uniform">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.expand_uniform">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">expand_uniform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">padding</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bbox</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Return an expanded Bbox by the specified padding.</span>
 
 <span class="sd">        Args:</span>
@@ -530,7 +530,7 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Bbox: The expanded Bbox instance.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">Bbox</span><span class="p">(</span>
             <span class="n">left</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">-</span> <span class="n">padding</span><span class="p">,</span>
             <span class="n">right</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">+</span> <span class="n">padding</span><span class="p">,</span>
@@ -544,7 +544,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">expand</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">left</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">top</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">right</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">bottom</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bbox</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Return an expanded Bbox by the specified padding for each side.</span>
 
 <span class="sd">        Args:</span>
@@ -559,7 +559,7 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Bbox: The expanded Bbox instance.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">Bbox</span><span class="p">(</span>
             <span class="n">left</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">-</span> <span class="n">left</span><span class="p">,</span>
             <span class="n">right</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">+</span> <span class="n">right</span><span class="p">,</span>
@@ -571,7 +571,7 @@
 <div class="viewcode-block" id="Bbox.pad_to_square">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.pad_to_square">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">pad_to_square</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bbox</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a padded Bbox to make it a square.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Returns a padded Bbox to make it a square."""</span>
         <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span>
         <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span>
 
@@ -599,7 +599,7 @@
 <div class="viewcode-block" id="Bbox.pad_to_aspect_ratio">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.pad_to_aspect_ratio">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">pad_to_aspect_ratio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_ratio</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bbox</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Returns a padded Bbox to achieve the target aspect ratio.</span>
 
 <span class="sd">        Args:</span>
@@ -610,10 +610,10 @@
 
 <span class="sd">        Raises:</span>
 <span class="sd">            ValueError: If target_ratio is &lt;= 0.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">target_ratio</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Target ratio cannot be negative or zero. Received </span><span class="si">{</span><span class="n">target_ratio</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">"Target ratio cannot be negative or zero. Received </span><span class="si">{</span><span class="n">target_ratio</span><span class="si">}</span><span class="s2">"</span>
             <span class="p">)</span>
 
         <span class="n">current_ratio</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aspect_ratio</span>
@@ -645,7 +645,7 @@
 <div class="viewcode-block" id="Bbox.clip_to_img">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.clip_to_img">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">clip_to_img</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_w</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">img_h</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bbox</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Returns a clipped Bbox to the image dimensions.</span>
 
 <span class="sd">        Remember that the bottom and right edges are considered excluded from the bbox, so</span>
@@ -658,7 +658,7 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Bbox: The clipped Bbox.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">Bbox</span><span class="p">(</span>
             <span class="n">left</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">),</span>
             <span class="n">top</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="p">),</span>
@@ -674,7 +674,7 @@
 <div class="viewcode-block" id="Bbox.overlaps">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.overlaps">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">overlaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Bbox</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Checks if the current bounding box overlaps with another bounding box.</span>
 
 <span class="sd">        Two bboxes are considered as overlapping if they intersect with a non-zero area.</span>
@@ -684,7 +684,7 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: True if the bounding boxes overlap, False otherwise.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">inter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">inter</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">inter</span><span class="o">.</span><span class="n">area</span> <span class="o">&gt;</span> <span class="mi">0</span></div>
@@ -693,7 +693,7 @@
 <div class="viewcode-block" id="Bbox.contains_point">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.contains_point">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">contains_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Checks if a point is inside the bounding box.</span>
 
 <span class="sd">        Args:</span>
@@ -702,14 +702,14 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: True if the point is inside the bounding box, False otherwise.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span></div>
 
 
 <div class="viewcode-block" id="Bbox.contains">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.contains">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Bbox</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Checks if the other Bbox is contained by this one.</span>
 
 <span class="sd">        Args:</span>
@@ -717,7 +717,7 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: True if this bounding box contains the other one.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">other</span><span class="o">.</span><span class="n">left</span>
             <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">&gt;=</span> <span class="n">other</span><span class="o">.</span><span class="n">right</span>
@@ -729,7 +729,7 @@
 <div class="viewcode-block" id="Bbox.is_inside">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.is_inside">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">is_inside</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Bbox</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Checks if this Bbox is contained by the other one.</span>
 
 <span class="sd">        Args:</span>
@@ -737,7 +737,7 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: True if this bounding box is contained by the other one.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">&gt;=</span> <span class="n">other</span><span class="o">.</span><span class="n">left</span>
             <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">&lt;=</span> <span class="n">other</span><span class="o">.</span><span class="n">right</span>
@@ -749,7 +749,7 @@
 <div class="viewcode-block" id="Bbox.union">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.union">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">union</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Bbox</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bbox</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Calculates the minimal Bbox that englobes this one AND the other.</span>
 
 <span class="sd">        Args:</span>
@@ -757,7 +757,7 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Bbox: The minimal englobing Bbox.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">Bbox</span><span class="p">(</span>
             <span class="n">left</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">left</span><span class="p">),</span>
             <span class="n">top</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">top</span><span class="p">),</span>
@@ -769,7 +769,7 @@
 <div class="viewcode-block" id="Bbox.intersection">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.intersection">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">intersection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Bbox</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Bbox</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Calculates the intersection with another Bbox. If the resulting Bbox is not valid (ie</span>
 <span class="sd">        `left &gt; right` or `top &gt; bottom`, returns None.</span>
 
@@ -778,7 +778,7 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Optional[Bbox]: The intersection of the two bounding boxes if valid.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">left</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
         <span class="n">top</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">top</span><span class="p">)</span>
         <span class="n">right</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
@@ -793,14 +793,14 @@
 <div class="viewcode-block" id="Bbox.iou">
 <a class="viewcode-back" href="../../index.html#easy_bbox.Bbox.iou">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">iou</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Bbox</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculates the Intersection over Union (IoU) with another bounding box.</span>
+<span class="w">        </span><span class="sd">"""Calculates the Intersection over Union (IoU) with another bounding box.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            other (Bbox): The other Bbox.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            float: The IoU between the two bounding boxes.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="c1"># Calculate the intersection area</span>
         <span class="n">inter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
         <span class="n">intersection_area</span> <span class="o">=</span> <span class="n">inter</span><span class="o">.</span><span class="n">area</span> <span class="k">if</span> <span class="n">inter</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">0</span>
@@ -820,7 +820,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">distance_to_point</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">dist</span><span class="p">:</span> <span class="n">DistanceMetric</span> <span class="o">=</span> <span class="n">DistanceMetric</span><span class="o">.</span><span class="n">L2</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Calculates the distance from the bounding box to a point.</span>
 
 <span class="sd">        Args:</span>
@@ -833,7 +833,7 @@
 
 <span class="sd">        Raises:</span>
 <span class="sd">            ValueError: If a wrong distance metric is provided.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">dx</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">-</span> <span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
         <span class="n">dy</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">-</span> <span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span>
 
@@ -844,7 +844,7 @@
             <span class="c1"># Calculate L2 distance (Euclidean distance)</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
 
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dist</span><span class="si">}</span><span class="s2"> is not a valid distance function.&quot;</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">dist</span><span class="si">}</span><span class="s2"> is not a valid distance function."</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Bbox.distance_to_bbox">
@@ -852,7 +852,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">distance_to_bbox</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Bbox</span><span class="p">,</span> <span class="n">dist</span><span class="p">:</span> <span class="n">DistanceMetric</span> <span class="o">=</span> <span class="n">DistanceMetric</span><span class="o">.</span><span class="n">L2</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Calculates the distance between the edges of this Bbox and another Bbox.</span>
 <span class="sd">        Distance is zero if the boxes overlap or touch.</span>
 
@@ -865,7 +865,7 @@
 
 <span class="sd">        Raises:</span>
 <span class="sd">            ValueError: If a wrong distance metric is provided.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">dx</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">left</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
         <span class="n">dy</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">bottom</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">top</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span>
 
@@ -876,34 +876,34 @@
             <span class="c1"># Calculate L2 distance (Euclidean distance)</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
 
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dist</span><span class="si">}</span><span class="s2"> is not a valid distance function.&quot;</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">dist</span><span class="si">}</span><span class="s2"> is not a valid distance function."</span><span class="p">)</span></div>
 
 
     <span class="c1"># endregion</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">width</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;The width of the Bbox.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""The width of the Bbox."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">left</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">height</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;The height of the Bbox.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""The height of the Bbox."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;The area of the Bbox&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""The area of the Bbox"""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">center</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;The center of the Bbox in (x, y) format.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""The center of the Bbox in (x, y) format."""</span>
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">aspect_ratio</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;The aspect ratio of the Bbox (width over height).&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""The aspect ratio of the Bbox (width over height)."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span>
 
     <span class="fm">__or__</span> <span class="o">=</span> <span class="n">union</span>
@@ -912,7 +912,7 @@
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_assert_sequence_len</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">target_len</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Asserts that the length of the sequence is 4.</span>
 
 <span class="sd">    Args:</span>
@@ -921,10 +921,10 @@
 
 <span class="sd">    Raises:</span>
 <span class="sd">        ValueError: If the length of the sequence is not the target one.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">!=</span> <span class="n">target_len</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;A sequence of len </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="si">}</span><span class="s2"> has been passed. Need a sequence of len </span><span class="si">{</span><span class="n">target_len</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="sa">f</span><span class="s2">"A sequence of len </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="si">}</span><span class="s2"> has been passed. Need a sequence of len </span><span class="si">{</span><span class="n">target_len</span><span class="si">}</span><span class="s2">."</span>
         <span class="p">)</span>
 </pre></div>
 
