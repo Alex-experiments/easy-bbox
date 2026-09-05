@@ -171,7 +171,7 @@ class TestBbox(unittest.TestCase):
 
     def test_to_norm_tlwh(self):
         """Test the to_norm_tlwh method."""
-        self.assertTupleEqual(self.bbox.to_norm_tlwh(100, 100), (0.1, 0.2, 0.3, 0.4))
+        self.assertTupleEqual(self.bbox.to_norm_tlwh(100, 100), (0.1, 0.2, 0.2, 0.2))
 
     def test_to_cwh(self):
         """Test the to_cwh method."""
