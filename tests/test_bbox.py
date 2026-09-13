@@ -412,9 +412,17 @@ class TestBbox(unittest.TestCase):
         self.assertTrue(self.bbox.contains_point(20, 30))
         self.assertFalse(self.bbox.contains_point(5, 15))
 
-        # Check that corners are in:
-        for x, y in self.bbox.to_polygon():
-            self.assertTrue(self.bbox.contains_point(x, y))
+        # The top-left corner is included.
+        self.assertTrue(self.bbox.contains_point(self.bbox.left, self.bbox.top))
+
+        # Right and bottom edges are excluded.
+        self.assertFalse(self.bbox.contains_point(self.bbox.right, 30))
+        self.assertFalse(self.bbox.contains_point(20, self.bbox.bottom))
+
+        # Other corners are excluded under half-open box semantics.
+        self.assertFalse(self.bbox.contains_point(self.bbox.right, self.bbox.top))
+        self.assertFalse(self.bbox.contains_point(self.bbox.left, self.bbox.bottom))
+        self.assertFalse(self.bbox.contains_point(self.bbox.right, self.bbox.bottom))
 
     def test_union(self):
         """Test Bbox union."""
