@@ -1793,7 +1793,7 @@ slicing and PIL image cropping features (in case of Int Bboxes).</p>
   </span>
 
 </h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">height</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">height</span><span class="p">:</span> <span class="nb">float</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -3076,8 +3076,9 @@ The scaling will be from the center.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The factor to scale the bounding box by. The area will be scaled by this factor.
-(and width and height will be scaled by the square root of this factor.)</p>
+                <p>The factor to scale the bounding box by. The area
+will be scaled by this factor. (Meaning width and height will be
+scaled by the square root of this factor.)</p>
               </div>
             </td>
             <td>
@@ -3477,6 +3478,8 @@ Defaults to 0.</p>
 <p>Remember that the bottom and right edges are considered excluded from the bbox, so
 <code>Bbox(left=-10, top=-20, right=100, bottom=120).clip_to_img(img_w=32, img_h=64)</code>
 returns <code>Bbox(left=0, top=0, right=32, bottom=64)</code></p>
+<p>Note that this method can return a zero area bounding box if the bbox is
+completely out of the image.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -3641,7 +3644,8 @@ returns <code>Bbox(left=0, top=0, right=32, bottom=64)</code></p>
 
     <div class="doc doc-contents ">
 
-        <p>Checks if a point is inside the bounding box.</p>
+        <p>Checks if a point is inside the bounding box.
+Note that point on the right or bottom edges are not considered inside.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -3955,6 +3959,7 @@ returns <code>Bbox(left=0, top=0, right=32, bottom=64)</code></p>
 
         <p>Calculates the intersection with another Bbox. If the resulting Bbox is not valid (ie
 <code>left &gt; right</code> or <code>top &gt; bottom</code>, returns None.</p>
+<p>This operation can return a zero area Bbox if the two bounding boxes are just touching.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
