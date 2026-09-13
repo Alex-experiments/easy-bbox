@@ -10,10 +10,14 @@ from __future__ import annotations
 
 import math
 from enum import Enum
-from typing import Callable, List, Optional, Sequence, Tuple
+from typing import TYPE_CHECKING
 
 from pydantic import BaseModel, model_validator
-from typing_extensions import Self
+
+if TYPE_CHECKING:
+    from typing import Callable, List, Optional, Sequence, Tuple
+
+    from typing_extensions import Self
 
 
 class DistanceMetric(Enum):
@@ -385,8 +389,9 @@ class Bbox(BaseModel):
         The scaling will be from the center.
 
         Args:
-            scale_factor (float): The factor to scale the bounding box by. The area will be scaled by this factor.
-                (and width and height will be scaled by the square root of this factor.)
+            scale_factor (float): The factor to scale the bounding box by. The area
+                will be scaled by this factor. (Meaning width and height will be
+                scaled by the square root of this factor.)
 
         Returns:
             Bbox: The scaled Bbox instance.
@@ -520,6 +525,9 @@ class Bbox(BaseModel):
         `Bbox(left=-10, top=-20, right=100, bottom=120).clip_to_img(img_w=32, img_h=64)`
         returns `Bbox(left=0, top=0, right=32, bottom=64)`
 
+        Note that this method can return a zero area bounding box if the bbox is
+        completely out of the image.
+
         Args:
             img_w (int): The image width in pixels.
             img_h (int): The image height in pixels.
@@ -528,10 +536,10 @@ class Bbox(BaseModel):
             Bbox: The clipped Bbox.
         """
         return Bbox(
-            left=max(0, self.left),
-            top=max(0, self.top),
-            right=min(img_w, self.right),
-            bottom=min(img_h, self.bottom),
+            left=max(0, min(img_w, self.left)),
+            top=max(0, min(img_h, self.top)),
+            right=max(0, min(img_w, self.right)),
+            bottom=max(0, min(img_h, self.bottom)),
         )
 
     # endregion
@@ -557,6 +565,7 @@ class Bbox(BaseModel):
     def contains_point(self, x: float, y: float) -> bool:
         """
         Checks if a point is inside the bounding box.
+        Note that point on the right or bottom edges are not considered inside.
 
         Args:
             x (float): The x-coordinate of the point.
@@ -565,7 +574,7 @@ class Bbox(BaseModel):
         Returns:
             bool: True if the point is inside the bounding box, False otherwise.
         """
-        return self.left <= x <= self.right and self.top <= y <= self.bottom
+        return self.left <= x < self.right and self.top <= y < self.bottom
 
     def contains(self, other: Bbox) -> bool:
         """
@@ -622,6 +631,8 @@ class Bbox(BaseModel):
         """
         Calculates the intersection with another Bbox. If the resulting Bbox is not valid (ie
         `left > right` or `top > bottom`, returns None.
+
+        This operation can return a zero area Bbox if the two bounding boxes are just touching.
 
         Args:
             other (Bbox): The other bounding box to calculate the intersection with.
@@ -727,7 +738,7 @@ class Bbox(BaseModel):
         return self.right - self.left
 
     @property
-    def height(self):
+    def height(self) -> float:
         """The height of the Bbox."""
         return self.bottom - self.top
 
@@ -744,6 +755,12 @@ class Bbox(BaseModel):
     @property
     def aspect_ratio(self) -> float:
         """The aspect ratio of the Bbox (width over height)."""
+        # Height and width of 0 are possible.
+        if self.height == 0:
+            if self.width == 0:
+                return 0
+            return math.inf
+
         return self.width / self.height
 
     __or__ = union

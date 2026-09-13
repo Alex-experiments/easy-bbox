@@ -4,9 +4,14 @@ utils.py
 Contains utility functions for bounding box operations.
 """
 
-from typing import List, Optional, Sequence, Tuple
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
 
 from easy_bbox.bbox import Bbox
+
+if TYPE_CHECKING:
+    from typing import List, Optional, Sequence, Tuple
 
 
 def nms(
